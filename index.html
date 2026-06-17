@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A-1 Diner | Historic Landmark & Legendary Comfort Food</title>
-    <!-- Tailwind CSS for modern responsive styling -->
+    <title>A-1 Diner | Premium Interactive Dining Experience</title>
+    <!-- Tailwind CSS for modern responsive layout layout -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts for premium retro typography pairing -->
+    <!-- Google Fonts for retro/historic typography styling -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
-            theme {
+            theme: {
                 extend {
                     fontFamily {
                         serif: ['"DM Serif Display"', 'serif'],
@@ -30,17 +30,19 @@
     </script>
     <style>
         html { scroll-behavior: smooth; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #FDFBF7; color: #1A1C19; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #FDFBF7; color: #1A1C19; overflow-x: hidden; }
         .serif-title { font-family: 'DM Serif Display', serif; }
+        /* Smooth transitions for dynamic elements */
+        .transition-all-custom { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
     </style>
 </head>
 <body class="antialiased selection:bg-dinerGold selection:text-dinerDarkGreen">
 
-    <!-- HEADER / NAVIGATION (Inspired by 1000045978.jpg) -->
-    <header class="w-full bg-dinerCream border-b border-stone-200 sticky top-0 z-50 px-6 py-4 transition-all duration-300">
+    <!-- DYNAMIC STICKY APPLICATION HEADER -->
+    <header class="w-full bg-dinerCream/95 backdrop-blur-md border-b border-stone-200 sticky top-0 z-40 px-4 sm:px-6 py-4 shadow-sm transition-all duration-300">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <!-- Mobile Navigation Menu Toggle Icon -->
-            <button class="text-dinerDarkGreen p-2 hover:bg-stone-100 rounded-lg transition-colors focus:outline-none" aria-label="Toggle Menu">
+            <!-- Mobile Menu Toggle Button -->
+            <button onclick="toggleMobileNav(true)" class="text-dinerDarkGreen p-2 hover:bg-stone-100 rounded-xl transition-colors focus:outline-none" aria-label="Open Menu">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
@@ -53,44 +55,116 @@
                 </a>
             </div>
 
-            <!-- Empty spacer element balancing the header grid layout perfectly -->
-            <div class="w-11"></div>
+            <!-- Amazon-style Sticky Cart Status Button -->
+            <button onclick="toggleCartDrawer(true)" class="relative p-2.5 bg-dinerDarkGreen text-dinerCream hover:bg-emerald-900 rounded-xl transition-all shadow-md focus:outline-none flex items-center gap-2 group border border-emerald-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-dinerGold group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                </svg>
+                <span id="cart-count-badge" class="bg-dinerGold text-dinerCharcoal text-xs font-bold px-2 py-0.5 rounded-md min-w-[20px] transition-all">0</span>
+            </button>
         </div>
     </header>
 
-    <!-- 1. HERO SECTION (Inspired by 1000045978.jpg / 1000045978_2.jpg) -->
+    <!-- SLIDE-OUT MOBILE NAVIGATION PANEL -->
+    <div id="mobile-nav-dimmer" class="fixed inset-0 bg-black/50 z-50 opacity-0 pointer-events-none transition-opacity duration-300" onclick="toggleMobileNav(false)"></div>
+    <div id="mobile-nav-panel" class="fixed top-0 bottom-0 left-0 w-80 max-w-[85vw] bg-white z-50 shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out p-6 flex flex-col justify-between">
+        <div>
+            <div class="flex items-center justify-between pb-6 border-b border-stone-100">
+                <span class="serif-title text-2xl text-dinerDarkGreen uppercase">Navigation</span>
+                <button onclick="toggleMobileNav(false)" class="text-stone-400 hover:text-stone-700 p-1 rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <nav class="space-y-4 pt-6">
+                <a href="#" onclick="toggleMobileNav(false)" class="block px-4 py-3 font-semibold text-stone-700 hover:bg-stone-50 hover:text-dinerDarkGreen rounded-xl transition-all">Home Overview</a>
+                <a href="#history" onclick="toggleMobileNav(false)" class="block px-4 py-3 font-semibold text-stone-700 hover:bg-stone-50 hover:text-dinerDarkGreen rounded-xl transition-all">Our Rich History</a>
+                <a href="#testimonials" onclick="toggleMobileNav(false)" class="block px-4 py-3 font-semibold text-stone-700 hover:bg-stone-50 hover:text-dinerDarkGreen rounded-xl transition-all">Customer Reviews</a>
+                <a href="#menu" onclick="toggleMobileNav(false)" class="block px-4 py-3 font-semibold text-stone-700 hover:bg-stone-50 hover:text-dinerDarkGreen rounded-xl transition-all">Interactive Menu</a>
+                <a href="#contact" onclick="toggleMobileNav(false)" class="block px-4 py-3 font-semibold text-stone-700 hover:bg-stone-50 hover:text-dinerDarkGreen rounded-xl transition-all">Location & Hours</a>
+            </nav>
+        </div>
+        <div class="bg-stone-50 p-4 rounded-xl text-center border border-stone-100">
+            <p class="text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Call to Order</p>
+            <a href="tel:2075824804" class="text-lg font-bold text-dinerDarkGreen hover:underline">207-582-4804</a>
+        </div>
+    </div>
+
+    <!-- DYNAMIC SLIDE-OUT CART / ORDER COMPONENT (Amazon Style) -->
+    <div id="cart-dimmer" class="fixed inset-0 bg-black/60 z-50 opacity-0 pointer-events-none transition-opacity duration-300" onclick="toggleCartDrawer(false)"></div>
+    <div id="cart-drawer" class="fixed top-0 bottom-0 right-0 w-full sm:w-[450px] bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-between">
+        <div class="p-6 border-b border-stone-200 flex items-center justify-between bg-stone-50">
+            <div class="flex items-center gap-2">
+                <h3 class="serif-title text-2xl text-dinerCharcoal uppercase">Your Order Draft</h3>
+                <span id="cart-count-title" class="bg-stone-200 text-stone-700 text-xs font-bold px-2 py-0.5 rounded-full">0 items</span>
+            </div>
+            <button onclick="toggleCartDrawer(false)" class="text-stone-400 hover:text-stone-700 p-2 rounded-xl hover:bg-stone-200/50 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Dynamic Cart Item Container List -->
+        <div id="cart-items-list" class="flex-1 overflow-y-auto p-6 space-y-4 bg-stone-50/30">
+            <!-- Rendered Reactively via JS State -->
+        </div>
+
+        <!-- Interactive Pricing Calculations and Checkout Action Module -->
+        <div class="p-6 border-t border-stone-200 bg-white shadow-[0_-8px_30px_rgb(0,0,0,0.04)] space-y-4">
+            <div class="space-y-1.5 text-sm text-stone-600">
+                <div class="flex justify-between">
+                    <span>Subtotal</span>
+                    <span id="summary-subtotal" class="font-semibold text-stone-900">$0.00</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Est. Taxes (8%)</span>
+                    <span id="summary-tax" class="font-semibold text-stone-900">$0.00</span>
+                </div>
+                <div class="flex justify-between text-base font-bold text-stone-900 pt-2 border-t border-stone-100">
+                    <span>Total Estimate</span>
+                    <span id="summary-total" class="text-dinerDarkGreen">$0.00</span>
+                </div>
+            </div>
+            <button onclick="alert('Demo Feature: This client order draft setup can be fully piped straight into your POS system, kitchen printer, or dynamic online checkout interface!')" class="w-full py-4 bg-dinerGold hover:bg-yellow-500 text-dinerCharcoal font-bold tracking-wide rounded-xl shadow-md transform active:scale-95 transition-all uppercase text-center text-sm">
+                Proceed to Checkout
+            </button>
+            <p class="text-[10px] text-center text-stone-400">Prices above reflect baseline item configurations. Final totals processed at service lines.</p>
+        </div>
+    </div>
+
+    <!-- 1. HERO SECTION (Inspired by layout in 1000045978.jpg) -->
     <section class="relative min-h-[85vh] flex items-center justify-center px-4 bg-gradient-to-b from-stone-100 to-stone-200 border-b-8 border-dinerDarkGreen overflow-hidden">
-        <!-- High-vibe pure CSS fallback layout styling mirroring an image layer depth -->
-        <div class="absolute inset-0 bg-stone-900/10 mix-blend-multiply z-0"></div>
+        <div class="absolute inset-0 bg-stone-950/10 mix-blend-multiply z-0"></div>
         
-        <!-- Central Hero Content Typography Block Container -->
-        <div class="relative z-10 max-w-4xl mx-auto text-center px-4 py-12 bg-white/80 backdrop-blur-md rounded-2xl border border-white/40 shadow-2xl">
+        <!-- Hero Box Container -->
+        <div class="relative z-10 max-w-4xl mx-auto text-center px-6 py-14 sm:py-16 bg-white/85 backdrop-blur-md rounded-2xl border border-white/50 shadow-2xl transform transition duration-500 hover:scale-[1.01]">
             <h1 class="serif-title text-4xl sm:text-5xl md:text-6xl text-dinerCharcoal tracking-tight leading-tight mb-6">
                 Legendary Comfort Food.<br>
                 <span class="text-dinerDarkGreen">Classic Diner Hospitality.</span>
             </h1>
             <p class="text-lg sm:text-xl text-stone-700 max-w-2xl mx-auto font-medium leading-relaxed mb-10">
-                Step into a slice of Maine history at A-1 Diner—serving up timeless flavor, incredible service, and friendly smiles right from our iconic vintage car.
+                Step into a slice of Maine history at A-1 Diner—serving up timeless flavor and friendly smiles right from our iconic vintage car.
             </p>
             
-            <!-- Stacked/Inline High-Contrast Interactive CTA Button Group -->
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="#menu" class="w-full sm:w-auto px-8 py-4 bg-dinerGold hover:bg-yellow-500 text-dinerCharcoal font-bold tracking-wide rounded-xl shadow-lg transform active:scale-95 transition-all text-center uppercase">
-                    📋 View Dinner Menu
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-md mx-auto">
+                <a href="#menu" class="w-full sm:w-auto flex-1 px-8 py-4 bg-dinerGold hover:bg-yellow-500 text-dinerCharcoal font-bold tracking-wide rounded-xl shadow-lg transform active:scale-95 transition-all text-center uppercase text-sm">
+                    VIEW DINNER MENU
                 </a>
-                <a href="#contact" class="w-full sm:w-auto px-8 py-4 bg-dinerDarkGreen hover:bg-emerald-900 text-dinerCream font-bold tracking-wide rounded-xl shadow-lg transform active:scale-95 transition-all text-center uppercase">
-                    📍 Get Directions
+                <a href="#contact" class="w-full sm:w-auto flex-1 px-8 py-4 bg-dinerDarkGreen hover:bg-emerald-900 text-dinerCream font-bold tracking-wide rounded-xl shadow-lg transform active:scale-95 transition-all text-center uppercase text-sm">
+                    GET DIRECTIONS
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- 2. HISTORY & VIBE SECTION (Inspired by 1000045979.jpg) -->
-    <section class="bg-dinerDarkGreen text-dinerCream py-20 px-6 sm:px-12 border-b-8 border-dinerGold">
+    <!-- 2. HISTORY & VIBE SECTION (Inspired by layout in 1000045979.jpg) -->
+    <section id="history" class="bg-dinerDarkGreen text-dinerCream py-24 px-6 sm:px-12 border-b-8 border-dinerGold relative">
         <div class="max-w-6xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-center">
                 
-                <!-- Content Block 1: The Historical Landmark Narrative -->
+                <!-- Content Block 1: History Title & Editorial Copy -->
                 <div class="space-y-6 border-l-4 border-dinerGold pl-6 sm:pl-8">
                     <h2 class="serif-title text-3xl sm:text-4xl tracking-wide text-dinerGold uppercase">
                         A True Historic Landmark
@@ -100,23 +174,23 @@
                     </p>
                 </div>
                 
-                <!-- Content Block 2: Full Experience Details Grid Card -->
+                <!-- Content Block 2: Interactive Options Display Grid Card -->
                 <div class="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 shadow-xl space-y-6">
                     <h2 class="serif-title text-3xl sm:text-4xl tracking-wide text-dinerGold uppercase">
                         The Full Diner Experience
                     </h2>
                     <p class="text-base text-stone-200 leading-relaxed">
-                        Enjoy multi-faceted service built around your routine: step inside for classic cozy dine-in counter service, comfortable table service, or grab your favorites via rapid takeout and curbside pickup options. 
+                        Mention our versatile dining options: Cozy dine-in counter service, table service, a welcoming outdoor seating area, or fast curbside pickup and takeout options. Mention that we are proudly family-friendly, LGBTQ+ friendly, and dogs are welcome outside!
                     </p>
-                    <div class="pt-2">
-                        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-dinerGold text-dinerCharcoal mr-2 mb-2">
-                            Family Friendly
+                    <div class="pt-2 flex flex-wrap gap-2">
+                        <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-dinerGold text-dinerCharcoal shadow-sm">
+                            Family-Friendly
                         </span>
-                        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-dinerGold text-dinerCharcoal mr-2 mb-2">
+                        <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-dinerGold text-dinerCharcoal shadow-sm">
                             LGBTQ+ Friendly
                         </span>
-                        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-dinerGold text-dinerCharcoal mb-2">
-                            Dogs Allowed Outside
+                        <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-dinerGold text-dinerCharcoal shadow-sm">
+                            Dogs Welcome Outside
                         </span>
                     </div>
                 </div>
@@ -125,65 +199,61 @@
         </div>
     </section>
 
-    <!-- 3. HIGHLIGHTS & TESTIMONIALS SECTION (Inspired by 1000045980.jpg) -->
-    <section class="bg-stone-50 py-20 px-6 sm:px-12 border-b border-stone-200">
+    <!-- 3. HIGHLIGHTS & TESTIMONIALS SECTION (Inspired by layout in 1000045980.jpg) -->
+    <section id="testimonials" class="bg-stone-50 py-24 px-6 sm:px-12 border-b border-stone-200">
         <div class="max-w-6xl mx-auto text-center">
             
-            <!-- Unified Review Ratings Badge Header Block -->
-            <div class="inline-block bg-white border border-stone-200 rounded-2xl px-8 py-6 shadow-md mb-16 transform transition hover:-translate-y-1 duration-300">
-                <h3 class="text-xs uppercase font-bold tracking-widest text-stone-500 mb-2">Guest Ratings</h3>
-                <p class="serif-title text-2xl text-dinerCharcoal font-bold tracking-wide uppercase mb-2">EXCELLENT</p>
+            <!-- Global Consolidated Review Score Board Overlay Badge -->
+            <div class="inline-block bg-white border border-stone-200 rounded-2xl px-10 py-6 shadow-md mb-16 transform transition hover:-translate-y-1 duration-300">
+                <p class="serif-title text-2xl text-dinerCharcoal font-bold tracking-wide uppercase mb-1">EXCELLENT</p>
                 <div class="flex justify-center text-dinerGold space-x-1 text-2xl mb-2">
                     <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                 </div>
-                <p class="text-xs text-stone-500 font-medium tracking-wide">Based on certified customer experiences</p>
+                <p class="text-xs text-stone-500 font-semibold tracking-wide uppercase">Based on customer experiences</p>
             </div>
 
-            <!-- Strategic Highlights Grid Cards -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100">
-                    <p class="text-xl font-bold text-dinerDarkGreen mb-1">⚡ Fast Service</p>
-                    <p class="text-xs text-stone-500 font-medium uppercase tracking-wide">No lines, friendly staff</p>
+            <!-- Strategic Highlights Presentation Sub-Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16 max-w-5xl mx-auto">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200/60 transform hover:scale-[1.03] transition-transform duration-200">
+                    <p class="text-xl font-bold text-dinerDarkGreen mb-1">⚡ Fast &amp; Friendly Service</p>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100">
-                    <p class="text-xl font-bold text-dinerDarkGreen mb-1">☕ Elite Beverages</p>
-                    <p class="text-xs text-stone-500 font-medium uppercase tracking-wide">Great Coffee &amp; Tea Selection</p>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200/60 transform hover:scale-[1.03] transition-transform duration-200">
+                    <p class="text-xl font-bold text-dinerDarkGreen mb-1">☕ Great Coffee &amp; Tea Selection</p>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100">
-                    <p class="text-xl font-bold text-dinerDarkGreen mb-1">🍹 Full Bar Variety</p>
-                    <p class="text-xs text-stone-500 font-medium uppercase tracking-wide">Beer, Wine, &amp; Great Cocktails</p>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200/60 transform hover:scale-[1.03] transition-transform duration-200">
+                    <p class="text-xl font-bold text-dinerDarkGreen mb-1">🍹 Great Beer, Wine, &amp; Cocktails</p>
                 </div>
             </div>
 
-            <!-- Testimonial Feed Cards -->
+            <!-- Client Review Feed Cards -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Review 1 -->
-                <div class="bg-white p-8 rounded-2xl shadow-md border border-stone-100 text-left flex flex-col justify-between transition hover:shadow-lg duration-200">
+                <div class="bg-white p-8 rounded-2xl shadow-md border border-stone-100 text-left flex flex-col justify-between transition-all duration-200 hover:shadow-xl hover:-translate-y-1">
                     <p class="text-stone-700 italic font-medium leading-relaxed mb-6">
                         "No line, went right in and got served straight away. Awesome selections, fantastic coffee, very cute diner. All around a great experience!"
                     </p>
                     <div class="border-t border-stone-100 pt-4 flex items-center justify-between text-xs font-bold text-stone-400 tracking-wider uppercase">
-                        <span>Verified Guest</span>
+                        <span>Customer Review</span>
                         <span class="text-dinerGold">★★★★★</span>
                     </div>
                 </div>
                 <!-- Review 2 -->
-                <div class="bg-white p-8 rounded-2xl shadow-md border border-stone-100 text-left flex flex-col justify-between transition hover:shadow-lg duration-200">
+                <div class="bg-white p-8 rounded-2xl shadow-md border border-stone-100 text-left flex flex-col justify-between transition-all duration-200 hover:shadow-xl hover:-translate-y-1">
                     <p class="text-stone-700 italic font-medium leading-relaxed mb-6">
                         "Such a cool place, a suspended railroad car with a true diner feel. We got the Poutine to share &amp; loved the beer selection."
                     </p>
                     <div class="border-t border-stone-100 pt-4 flex items-center justify-between text-xs font-bold text-stone-400 tracking-wider uppercase">
-                        <span>Verified Guest</span>
+                        <span>Customer Review</span>
                         <span class="text-dinerGold">★★★★★</span>
                     </div>
                 </div>
                 <!-- Review 3 -->
-                <div class="bg-white p-8 rounded-2xl shadow-md border border-stone-100 text-left flex flex-col justify-between transition hover:shadow-lg duration-200">
+                <div class="bg-white p-8 rounded-2xl shadow-md border border-stone-100 text-left flex flex-col justify-between transition-all duration-200 hover:shadow-xl hover:-translate-y-1">
                     <p class="text-stone-700 italic font-medium leading-relaxed mb-6">
                         "What a find! Service was fun and excellent! Recommendations on food were on spot! Take the time to visit this gem!"
                     </p>
                     <div class="border-t border-stone-100 pt-4 flex items-center justify-between text-xs font-bold text-stone-400 tracking-wider uppercase">
-                        <span>Verified Guest</span>
+                        <span>Customer Review</span>
                         <span class="text-dinerGold">★★★★★</span>
                     </div>
                 </div>
@@ -192,105 +262,19 @@
         </div>
     </section>
 
-    <!-- 4. DIGITAL DINNER MENU SECTION (Inspired by 1000045981.jpg to 1000045985.jpg) -->
-    <section id="menu" class="py-20 px-4 sm:px-8 bg-dinerCream">
+    <!-- 4. APPLICATION DIGITAL DINNER MENU SECTION (Inspired by layouts in 1000045981.jpg to 1000045985.jpg) -->
+    <section id="menu" class="py-24 px-4 sm:px-8 bg-dinerCream relative">
         <div class="max-w-5xl mx-auto">
             
-            <!-- Section Title Header Block -->
-            <div class="text-center mb-16">
-                <span class="text-dinerDarkGreen font-bold text-xs uppercase tracking-widest bg-emerald-50 border border-emerald-200/60 px-4 py-1.5 rounded-full inline-block mb-3">
+            <!-- Dynamic Menu Controls Header Section -->
+            <div class="text-center mb-12">
+                <span class="text-dinerDarkGreen font-bold text-xs uppercase tracking-widest bg-emerald-50 border border-emerald-200 px-4 py-1.5 rounded-full inline-block mb-3">
                     Freshly Prepared Daily
                 </span>
                 <h2 class="serif-title text-4xl sm:text-5xl text-dinerCharcoal uppercase tracking-tight">
                     Dinner Menu
                 </h2>
-                <div class="w-24 h-1 bg-dinerGold mx-auto mt-4 rounded-full"></div>
-            </div>
+                <div class="w-24 h-1 bg-dinerGold mx-auto mt-4 rounded-full mb-8"></div>
 
-            <!-- Master Menu Flex/Grid Column Categories Layout -->
-            <div class="space-y-16">
-
-                <!-- SOUPS & CHILI CATEGORY -->
-                <div>
-                    <h3 class="serif-title text-2xl text-center text-dinerDarkGreen border-b border-stone-200 pb-2 mb-6 uppercase tracking-wide">
-                        Soups &amp; Chili
-                    </h3>
-                    <div class="max-w-xl mx-auto bg-white p-6 rounded-xl border border-stone-200 shadow-sm">
-                        <div class="flex justify-between items-baseline mb-1">
-                            <span class="font-bold text-dinerCharcoal text-lg">Soup &amp; Chili</span>
-                            <span class="font-bold text-dinerDarkGreen">Cup $3.99 / Bowl $4.99</span>
-                        </div>
-                        <p class="text-xs text-stone-500 italic">Warm, savory, comforting classic recipe prepared fresh in house daily.</p>
-                    </div>
-                </div>
-
-                <!-- SALADS CATEGORY -->
-                <div>
-                    <h3 class="serif-title text-2xl text-center text-dinerDarkGreen border-b border-stone-200 pb-2 mb-4 uppercase tracking-wide">
-                        Salads
-                    </h3>
-                    <p class="text-center text-xs font-semibold text-emerald-800 tracking-wide uppercase mb-6 bg-emerald-50 max-w-xs mx-auto py-1 rounded-md border border-emerald-100">
-                        💡 Add Grilled Chicken for +$3.49
-                    </p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm">
-                            <div class="flex justify-between items-baseline mb-1">
-                                <span class="font-bold text-dinerCharcoal text-base">Green Salad</span>
-                                <span class="font-bold text-dinerDarkGreen">Sm $5.99 / Lg $7.99</span>
-                            </div>
-                            <p class="text-xs text-stone-500 italic">Crisp, refreshing house green mix served with select garden vegetables.</p>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm">
-                            <div class="flex justify-between items-baseline mb-1">
-                                <span class="font-bold text-dinerCharcoal text-base">Greek Salad</span>
-                                <span class="font-bold text-dinerDarkGreen">Sm $6.59 / Lg $8.99</span>
-                            </div>
-                            <p class="text-xs text-stone-500 italic">Zesty traditional medley with savory block feta, black olives, and premium red onions.</p>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm">
-                            <div class="flex justify-between items-baseline mb-1">
-                                <span class="font-bold text-dinerCharcoal text-base">Caesar Salad</span>
-                                <span class="font-bold text-dinerDarkGreen">Sm $6.99 / Lg $8.59</span>
-                            </div>
-                            <p class="text-xs text-stone-500 italic">Hearts of crisp romaine, garlic croutons, and rich shredded parmesan cheese blend.</p>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm">
-                            <div class="flex justify-between items-baseline mb-1">
-                                <span class="font-bold text-dinerCharcoal text-base">Veggie Salad</span>
-                                <span class="font-bold text-dinerDarkGreen">Sm $7.99 / Lg $9.79</span>
-                            </div>
-                            <p class="text-xs text-stone-500 italic">Hearty, crisp operational seasonal vegetables tossed thoroughly to order.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ENTREES CATEGORY -->
-                <div>
-                    <h3 class="serif-title text-2xl text-center text-dinerDarkGreen border-b border-stone-200 pb-2 mb-6 uppercase tracking-wide">
-                        Classic Entrées
-                    </h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm flex flex-col justify-between">
-                            <div class="flex justify-between items-baseline mb-1">
-                                <span class="font-bold text-dinerCharcoal text-base">New England Pot Roast</span>
-                                <span class="font-bold text-dinerDarkGreen text-lg">$15.99</span>
-                            </div>
-                            <p class="text-xs text-stone-500 italic">Slow-braised ultra-tender pot roast beef served with rich local gravy reductions.</p>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm flex flex-col justify-between">
-                            <div class="flex justify-between items-baseline mb-1">
-                                <span class="font-bold text-dinerCharcoal text-base">Maine Fried Clams</span>
-                                <span class="font-bold text-dinerDarkGreen text-sm tracking-wide uppercase bg-stone-100 px-2.5 py-0.5 rounded text-stone-600">Market Price</span>
-                            </div>
-                            <p class="text-xs text-stone-500 italic">Authentic fresh local coastal Maine clams hand-battered and flash fried to perfect gold crisps.</p>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm flex flex-col justify-between">
-                            <div class="flex justify-between items-baseline mb-1">
-                                <span class="font-bold text-dinerCharcoal text-base">Angus Rib Eye Steak (8oz)</span>
-                                <span class="font-bold text-dinerDarkGreen text-lg">$15.59</span>
-                            </div>
-                            <p class="text-xs text-stone-500 italic">8oz charbroiled juicy prime Angus beef cut expertly seasoned and seared perfectly to order.</p>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm flex flex-col justify-between">
-                            <div class="flex justify-between items-baseline mb-1">
-                                <span class=
+                <!-- Dynamic Functional Control Area: Search Bar & Live Category Sorting Tabs -->
+                <div class="bg-white p-4 rounded-2xl border border-stone-200 shadow-sm max-w-3xl mx-auto space-y-4"
