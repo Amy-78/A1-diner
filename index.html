@@ -1,305 +1,314 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A-1 Diner | Legendary Comfort Food & Classic Diner Hospitality</title>
-    <!-- Google Fonts: Playfair Display (Serif) & DM Sans (Sans-Serif) -->
+    <title>A-1 Diner | Historic Dining in Gardiner, Maine</title>
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        serif: ['"Playfair Display"', 'serif'],
-                        sans: ['"DM Sans"', 'sans-serif'],
-                    },
                     colors: {
-                        vintage: {
-                            green: '#0b291e',    /* Rich dark hunter green */
-                            cream: '#fdfbf7',    /* Creamy warm beige background */
-                            charcoal: '#171918', /* Soft dark charcoal */
-                            gold: '#df9926',     /* Bold high-contrast warm amber */
-                            goldHover: '#c58219',
-                            mutedGreen: '#233d32',
-                            lightBeige: '#f4ede2' /* Darker beige contrast */
-                        }
+                        retroTeal: '#124346',
+                        retroBurgundy: '#5C1322',
+                        retroCream: '#F9F6EE',
+                        retroCharcoal: '#1F2421',
+                        retroGold: '#D4AF37',
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+                        sans: ['"Inter"', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
     <style>
-        /* Custom subtle scrollbar styling matching retro theme */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #fdfbf7;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #0b291e;
-            border-radius: 4px;
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
-<body class="font-sans bg-vintage-cream text-vintage-charcoal antialiased">
+<body class="font-sans bg-white text-retroCharcoal antialiased">
 
-    <!-- NAVIGATION HEADER -->
-    <header class="sticky top-0 z-50 bg-vintage-green text-vintage-cream shadow-md border-b border-vintage-gold/20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <!-- CSS Retro Diner Sign Icon -->
-                <div class="bg-vintage-gold text-vintage-green font-serif font-black px-3 py-1.5 rounded tracking-widest text-lg shadow-sm">
-                    A-1
-                </div>
-                <span class="font-serif text-xl sm:text-2xl font-bold tracking-tight">DINER</span>
+    <!-- HERO SECTION -->
+    <header class="relative min-h-screen flex flex-col justify-between bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1920&q=80');">
+        <!-- Dark Overlay -->
+        <div class="absolute inset-0 bg-black/50 z-0"></div>
+
+        <!-- Navigation Bar -->
+        <nav class="relative z-10 w-full max-w-7xl mx-auto px-6 py-6 flex justify-between items-center text-white">
+            <div class="text-2xl font-serif tracking-wider font-bold">
+                A-1 DINER
             </div>
-            
-            <nav class="hidden md:flex space-x-8 text-sm font-semibold tracking-wider uppercase">
-                <a href="#about" class="hover:text-vintage-gold transition-colors">Our History</a>
-                <a href="#highlights" class="hover:text-vintage-gold transition-colors">Experience</a>
-                <a href="#menu" class="hover:text-vintage-gold transition-colors">Dinner Menu</a>
-                <a href="#contact" class="hover:text-vintage-gold transition-colors">Location & Hours</a>
-            </nav>
-
-            <div>
-                <a href="#menu" class="inline-flex items-center bg-vintage-gold hover:bg-vintage-goldHover text-vintage-green font-bold text-xs sm:text-sm px-4 py-2 sm:px-5 sm:py-2.5 rounded transition-all transform hover:-translate-y-0.5 tracking-wider uppercase shadow-sm">
-                    Order Menu
-                </a>
+            <div class="flex space-x-6 text-sm font-semibold tracking-wider uppercase">
+                <a href="#about" class="hover:text-retroCream transition-colors">About</a>
+                <a href="#menu" class="hover:text-retroCream transition-colors">Menu</a>
+                <a href="#contact" class="hover:text-retroCream transition-colors">Visit Us</a>
             </div>
-        </div>
-    </header>
+        </nav>
 
-    <!-- SECTION 1: HERO SECTION -->
-    <section class="relative bg-vintage-green text-vintage-cream overflow-hidden py-24 sm:py-32 border-b-4 border-vintage-gold">
-        <!-- Abstract retro block pattern for structural visual interest -->
-        <div class="absolute inset-0 opacity-5 pointer-events-none">
-            <div class="absolute -top-12 -left-12 w-96 h-96 rounded-full border-8 border-vintage-cream"></div>
-            <div class="absolute -bottom-12 -right-12 w-96 h-96 rounded-full border-8 border-vintage-cream"></div>
-        </div>
-        
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <p class="text-vintage-gold font-semibold tracking-widest uppercase text-xs sm:text-sm mb-4">Established in Gardiner, Maine</p>
-            
-            <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-none mb-6">
-                Legendary Comfort Food.<br>
-                <span class="text-vintage-gold italic">Classic Diner Hospitality.</span>
+        <!-- Hero Content -->
+        <div class="relative z-10 w-full max-w-4xl mx-auto px-6 py-20 flex-grow flex flex-col justify-center text-center text-white">
+            <p class="text-sm font-semibold tracking-widest uppercase mb-4 text-retroCream">Established 1946 in Gardiner, Maine</p>
+            <h1 class="text-4xl md:text-6xl font-serif font-bold leading-tight mb-6">
+                Legendary Comfort Food.<br>Classic Diner Hospitality.
             </h1>
-            
-            <p class="max-w-2xl mx-auto text-stone-300 text-base sm:text-lg md:text-xl leading-relaxed mb-10">
-                Step into a slice of Maine history at A-1 Diner—serving up timeless flavor and friendly smiles right from our iconic vintage car atmosphere.
+            <p class="text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10 text-gray-200">
+                Step into a slice of Maine history at A-1 Diner—serving up timeless flavor and friendly smiles right from our iconic vintage car.
             </p>
-            
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="#menu" class="w-full sm:w-auto text-center bg-vintage-gold hover:bg-vintage-goldHover text-vintage-green font-bold text-sm px-8 py-4 rounded-full shadow-lg transition-all transform hover:-translate-y-0.5 tracking-wider uppercase">
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#menu" class="w-full sm:w-auto px-8 py-4 bg-retroBurgundy hover:bg-opacity-90 text-white font-semibold text-sm tracking-wider uppercase transition-all shadow-lg rounded-none text-center">
                     View Dinner Menu
                 </a>
-                <a href="https://maps.google.com/?cid=13105601848002421951" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto text-center bg-transparent hover:bg-vintage-cream/10 text-vintage-cream border-2 border-vintage-cream/40 hover:border-vintage-cream font-bold text-sm px-8 py-3.5 rounded-full transition-all tracking-wider uppercase">
+                <a href="#contact" class="w-full sm:w-auto px-8 py-4 border-2 border-white hover:bg-white hover:text-retroCharcoal text-white font-semibold text-sm tracking-wider uppercase transition-all rounded-none text-center">
                     Get Directions
                 </a>
             </div>
         </div>
-    </section>
+
+        <!-- Bottom Wave/Accent Line -->
+        <div class="relative z-10 w-full h-2 bg-retroBurgundy"></div>
+    </header>
 
     <!-- SECTION 2: HISTORY & VIBE SECTION -->
-    <section id="about" class="py-20 sm:py-28 bg-vintage-lightBeige border-b border-vintage-gold/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                
-                <!-- Content Block 1: Left Card -->
-                <div class="bg-vintage-cream p-8 sm:p-12 rounded-2xl shadow-md border border-vintage-gold/10 flex flex-col justify-between h-full">
-                    <div>
-                        <div class="w-12 h-1 bg-vintage-gold mb-6"></div>
-                        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-vintage-green mb-6">
-                            A True Historic Landmark
-                        </h2>
-                        <p class="text-stone-700 text-base sm:text-lg leading-relaxed mb-6">
-                            Step back in time to 1946 inside our beautifully preserved, authentic O'Mahony diner car suspended gracefully above the street. As a designated historic landmark in the heart of Gardiner, Maine, our cozy and nostalgic atmosphere surrounds you with gleaming chrome, classic booths, and rich community memories. It is more than just a place to enjoy a home-cooked meal; it is a living piece of New England history where every corner tells a story.
-                        </p>
-                    </div>
-                    <div class="border-t border-stone-200 pt-4 mt-6">
-                        <span class="text-xs font-semibold text-vintage-gold tracking-widest uppercase">The Heart of Maine Dining</span>
-                    </div>
+    <section id="about" class="bg-retroTeal text-retroCream py-20 px-6">
+        <div class="max-w-7xl mx-auto space-y-20">
+            <!-- Grid Row 1 -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold leading-tight border-b border-retroCream/20 pb-4">
+                        A True Historic Landmark
+                    </h2>
+                    <p class="text-lg leading-relaxed text-gray-200">
+                        Housed inside a beautifully preserved, authentic suspended railroad car, the A-1 Diner offers a step back into a classic era of dining. Originally built in the mid-20th century, our diner retains its cozy, historic atmosphere characterized by iconic polished chrome and warm wood paneling. We pride ourselves on keeping this community landmark vibrant, welcoming regulars and newcomers alike under our original vintage roof.
+                    </p>
                 </div>
-
-                <!-- Content Block 2: Right Card & Styled Quote CSS Container -->
-                <div class="flex flex-col gap-8 h-full">
-                    <!-- Text Editorial Card -->
-                    <div class="bg-vintage-green text-vintage-cream p-8 sm:p-10 rounded-2xl shadow-md border border-vintage-gold/10 flex-1">
-                        <h3 class="font-serif text-2xl font-bold text-vintage-gold mb-4">
-                            The Full Diner Experience
-                        </h3>
-                        <p class="text-stone-300 text-sm sm:text-base leading-relaxed mb-6">
-                            Whether you are looking for a quick bite or a relaxed family meal, we accommodate every preference with our versatile dining options. Choose from cozy dine-in counter service, traditional booth table service, a welcoming outdoor seating area, or fast curbside pickup and takeout options for those on the move. We are proudly family-friendly, LGBTQ+ friendly, and dog-friendly on our outdoor patio, ensuring a warm and inclusive welcome for everyone in your crew.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="bg-vintage-mutedGreen text-vintage-gold text-[11px] font-bold tracking-wider uppercase px-2.5 py-1 rounded">Dine-In Counter</span>
-                            <span class="bg-vintage-mutedGreen text-vintage-gold text-[11px] font-bold tracking-wider uppercase px-2.5 py-1 rounded">Table Service</span>
-                            <span class="bg-vintage-mutedGreen text-vintage-gold text-[11px] font-bold tracking-wider uppercase px-2.5 py-1 rounded">Outdoor Seating</span>
-                            <span class="bg-vintage-mutedGreen text-vintage-gold text-[11px] font-bold tracking-wider uppercase px-2.5 py-1 rounded">Takeout & Curbside</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Styled CSS Quote Block -->
-                    <div class="bg-vintage-cream border-l-4 border-vintage-gold p-6 sm:p-8 rounded-r-2xl shadow-sm flex flex-col justify-center">
-                        <span class="text-4xl text-vintage-gold font-serif leading-none h-3 select-none">“</span>
-                        <p class="italic text-stone-600 text-base leading-relaxed mb-4">
-                            There's nothing quite like sliding onto a swivel stool at the diner counter, smelling fresh coffee brewing, and sharing stories with our Gardiner neighbors. We run on warmth and timeless recipes.
-                        </p>
-                        <span class="text-xs font-bold tracking-wider uppercase text-vintage-green">— The A-1 Diner Family</span>
-                    </div>
+                <div class="h-80 md:h-[400px] w-full bg-cover bg-center shadow-2xl border-4 border-retroCream/10" style="background-image: url('https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?auto=format&fit=crop&w=1000&q=80');">
+                    <!-- Image placeholder representing the classic diner train car exterior -->
                 </div>
+            </div>
 
+            <!-- Grid Row 2 (Alternating) -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="lg:order-2 space-y-6">
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold leading-tight border-b border-retroCream/20 pb-4">
+                        The Full Diner Experience
+                    </h2>
+                    <p class="text-lg leading-relaxed text-gray-200">
+                        We provide a versatile range of dining styles to fit your day, including cozy dine-in counter service, comfortable table seating, and a welcoming outdoor area for clear days. If you are on the move, we offer fast curbside pickup and convenient takeout options. Our dining room is proudly family-friendly and LGBTQ+ friendly, and we are happy to welcome your dogs in our designated outdoor seating space.
+                    </p>
+                </div>
+                <div class="lg:order-1 h-80 md:h-[400px] w-full bg-cover bg-center shadow-2xl border-4 border-retroCream/10" style="background-image: url('https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&w=1000&q=80');">
+                    <!-- Image placeholder representing comfortable diner counter table service -->
+                </div>
             </div>
         </div>
     </section>
 
     <!-- SECTION 3: HIGHLIGHTS & TESTIMONIALS SECTION -->
-    <section id="highlights" class="py-20 sm:py-28 bg-vintage-cream">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="bg-retroCream py-20 px-6">
+        <div class="max-w-7xl mx-auto">
             
-            <!-- Custom CSS Star Graphic Badge -->
-            <div class="flex flex-col items-center mb-16 text-center">
-                <div class="inline-flex items-center space-x-2 bg-vintage-green text-vintage-cream px-5 py-2.5 rounded-full shadow-md border border-vintage-gold/30">
-                    <span class="text-vintage-gold text-xs font-bold tracking-widest uppercase">Excellent ★★★★★ based on customer experiences</span>
+            <!-- Trust Indicator Badge -->
+            <div class="flex flex-col items-center text-center mb-16">
+                <div class="inline-block bg-white border border-retroCharcoal/10 shadow-sm px-6 py-3 rounded-full text-sm font-semibold tracking-wide text-retroTeal uppercase">
+                    EXCELLENT ★★★★★ based on customer experiences
                 </div>
-                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-vintage-green mt-6">
-                    What Makes Us a Local Favorite
-                </h2>
-                <div class="w-16 h-0.5 bg-vintage-gold mt-4"></div>
             </div>
 
-            <!-- Featured Grid (3 Typography Cards) -->
+            <!-- Highlight Cards Grid -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-                
-                <!-- Feature 1 -->
-                <div class="bg-vintage-lightBeige/50 p-8 rounded-xl border border-vintage-gold/10 text-center hover:shadow-md transition-all">
-                    <div class="w-12 h-12 bg-vintage-green text-vintage-gold rounded-full flex items-center justify-center mx-auto mb-6 text-xl font-bold shadow-inner">
-                        ⚡
+                <!-- Highlight 1 -->
+                <div class="bg-white p-8 border border-retroCharcoal/10 shadow-md flex flex-col justify-between">
+                    <div>
+                        <div class="text-retroBurgundy text-3xl mb-4">⚡</div>
+                        <h3 class="text-xl font-serif font-bold mb-3">Fast & Friendly Service</h3>
+                        <p class="text-sm leading-relaxed text-gray-600">
+                            We make sure your hot meal is served promptly, paired with the attentive, welcoming service that defines classic diner hospitality.
+                        </p>
                     </div>
-                    <h3 class="font-serif text-xl font-bold text-vintage-green mb-3">Fast & Friendly Service</h3>
-                    <p class="text-stone-600 text-sm leading-relaxed">
-                        Enjoy responsive, genuine care from a seasoned crew that treats you like regular family members the very second you step through our historic diner doors.
-                    </p>
                 </div>
-
-                <!-- Feature 2 -->
-                <div class="bg-vintage-lightBeige/50 p-8 rounded-xl border border-vintage-gold/10 text-center hover:shadow-md transition-all">
-                    <div class="w-12 h-12 bg-vintage-green text-vintage-gold rounded-full flex items-center justify-center mx-auto mb-6 text-xl font-bold shadow-inner">
-                        ☕
+                <!-- Highlight 2 -->
+                <div class="bg-white p-8 border border-retroCharcoal/10 shadow-md flex flex-col justify-between">
+                    <div>
+                        <div class="text-retroBurgundy text-3xl mb-4">☕</div>
+                        <h3 class="text-xl font-serif font-bold mb-3">Great Coffee & Tea Selection</h3>
+                        <p class="text-sm leading-relaxed text-gray-600">
+                            We offer freshly brewed specialty coffees and premium hot teas to help you kickstart your morning or round out your evening comfort meal.
+                        </p>
                     </div>
-                    <h3 class="font-serif text-xl font-bold text-vintage-green mb-3">Great Coffee & Tea</h3>
-                    <p class="text-stone-600 text-sm leading-relaxed">
-                        Sip on our locally praised diner house blend, always freshly roasted, piping hot, and generously refilled, alongside robust specialty tea selections.
-                    </p>
                 </div>
-
-                <!-- Feature 3 -->
-                <div class="bg-vintage-lightBeige/50 p-8 rounded-xl border border-vintage-gold/10 text-center hover:shadow-md transition-all">
-                    <div class="w-12 h-12 bg-vintage-green text-vintage-gold rounded-full flex items-center justify-center mx-auto mb-6 text-xl font-bold shadow-inner">
-                        🍷
+                <!-- Highlight 3 -->
+                <div class="bg-white p-8 border border-retroCharcoal/10 shadow-md flex flex-col justify-between">
+                    <div>
+                        <div class="text-retroBurgundy text-3xl mb-4">🍺</div>
+                        <h3 class="text-xl font-serif font-bold mb-3">Great Beer, Wine, & Cocktails</h3>
+                        <p class="text-sm leading-relaxed text-gray-600">
+                            Pair your comfort food classics with a thoughtful selection of regional craft beers, house wines, and refreshing drinks.
+                        </p>
                     </div>
-                    <h3 class="font-serif text-xl font-bold text-vintage-green mb-3">Beer, Wine, & Cocktails</h3>
-                    <p class="text-stone-600 text-sm leading-relaxed">
-                        Elevate your comfort food meal with our carefully hand-curated craft beer selection, fine table wines, or beautifully balanced evening cocktail offerings.
-                    </p>
                 </div>
-
             </div>
 
-            <!-- Testimonial Grid (3 Review Cards) -->
+            <!-- Testimonial Cards Grid -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                
-                <!-- Review 1 -->
-                <div class="bg-vintage-cream p-8 rounded-xl shadow-md border border-vintage-gold/10 flex flex-col justify-between relative">
-                    <span class="absolute top-4 right-4 text-vintage-gold text-lg">★★★★★</span>
-                    <p class="italic text-stone-700 text-sm sm:text-base leading-relaxed mb-6 pt-4">
-                        "No line, went right in and got served straight away. Awesome selections, fantastic coffee, very cute diner. All around a great experience!"
-                    </p>
-                    <div class="border-t border-stone-100 pt-4 flex items-center justify-between">
-                        <span class="font-bold text-xs text-vintage-green tracking-wider uppercase">— Verified Diner Customer</span>
-                        <span class="text-xs text-stone-400">Local Review</span>
+                <!-- Review Card 1 -->
+                <div class="bg-white p-8 border border-retroCharcoal/10 shadow-sm relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-retroGold space-x-1 mb-4">
+                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        </div>
+                        <p class="text-sm italic leading-relaxed text-gray-700 mb-6">
+                            "No line, went right in and got served straight away. Awesome selections, fantastic coffee, very cute diner. All around a great experience!"
+                        </p>
                     </div>
+                    <div class="text-xs font-semibold tracking-wider text-gray-500 uppercase">— Verified Diner Review</div>
                 </div>
 
-                <!-- Review 2 -->
-                <div class="bg-vintage-cream p-8 rounded-xl shadow-md border border-vintage-gold/10 flex flex-col justify-between relative">
-                    <span class="absolute top-4 right-4 text-vintage-gold text-lg">★★★★★</span>
-                    <p class="italic text-stone-700 text-sm sm:text-base leading-relaxed mb-6 pt-4">
-                        "Such a cool place, a suspended railroad car with a true diner feel. We got the Poutine to share & loved the beer selection."
-                    </p>
-                    <div class="border-t border-stone-100 pt-4 flex items-center justify-between">
-                        <span class="font-bold text-xs text-vintage-green tracking-wider uppercase">— Community Diner Guest</span>
-                        <span class="text-xs text-stone-400">Local Review</span>
+                <!-- Review Card 2 -->
+                <div class="bg-white p-8 border border-retroCharcoal/10 shadow-sm relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-retroGold space-x-1 mb-4">
+                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        </div>
+                        <p class="text-sm italic leading-relaxed text-gray-700 mb-6">
+                            "Such a cool place, a suspended railroad car with a true diner feel. We got the Poutine to share & loved the beer selection."
+                        </p>
                     </div>
+                    <div class="text-xs font-semibold tracking-wider text-gray-500 uppercase">— Local Guide</div>
                 </div>
 
-                <!-- Review 3 -->
-                <div class="bg-vintage-cream p-8 rounded-xl shadow-md border border-vintage-gold/10 flex flex-col justify-between relative">
-                    <span class="absolute top-4 right-4 text-vintage-gold text-lg">★★★★★</span>
-                    <p class="italic text-stone-700 text-sm sm:text-base leading-relaxed mb-6 pt-4">
-                        "What a find! Service was fun and excellent! Recommendations on food were on spot! Take the time to visit this gem!"
-                    </p>
-                    <div class="border-t border-stone-100 pt-4 flex items-center justify-between">
-                        <span class="font-bold text-xs text-vintage-green tracking-wider uppercase">— Maine Traveler</span>
-                        <span class="text-xs text-stone-400">Local Review</span>
+                <!-- Review Card 3 -->
+                <div class="bg-white p-8 border border-retroCharcoal/10 shadow-sm relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-retroGold space-x-1 mb-4">
+                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        </div>
+                        <p class="text-sm italic leading-relaxed text-gray-700 mb-6">
+                            "What a find! Service was fun and excellent! Recommendations on food were on spot! Take the time to visit this gem!"
+                        </p>
                     </div>
+                    <div class="text-xs font-semibold tracking-wider text-gray-500 uppercase">— Road Trip Traveler</div>
                 </div>
-
             </div>
 
         </div>
     </section>
 
     <!-- SECTION 4: DIGITAL DINNER MENU SECTION -->
-    <section id="menu" class="py-20 sm:py-28 bg-vintage-lightBeige">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <!-- Menu Header -->
+    <section id="menu" class="bg-white py-20 px-6 border-t border-b border-gray-100">
+        <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
-                <span class="text-vintage-gold font-semibold tracking-widest uppercase text-xs sm:text-sm">Authentic Dinner Menu</span>
-                <h2 class="font-serif text-3xl sm:text-5xl font-bold text-vintage-green mt-2">Home-Style Dining</h2>
-                <div class="w-12 h-1 bg-vintage-gold mx-auto mt-4"></div>
+                <span class="text-sm font-semibold tracking-widest text-retroBurgundy uppercase">Authentic Comfort Fare</span>
+                <h2 class="text-4xl font-serif font-bold mt-2">Our Dinner Menu</h2>
+                <div class="w-16 h-1 bg-retroBurgundy mx-auto mt-4"></div>
             </div>
 
-            <!-- Grid Layout for Categories -->
-            <div class="space-y-16">
+            <!-- Two-Column Menu Layout -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
                 
-                <!-- Category Row: Soups & Salads -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- COLUMN A -->
+                <div class="space-y-12">
                     
-                    <!-- Soups & Chili Category -->
-                    <div class="bg-vintage-cream p-6 sm:p-8 rounded-2xl shadow-md border border-vintage-gold/10">
-                        <div class="border-2 border-dashed border-vintage-gold/30 px-4 py-3 rounded-lg text-center mb-8">
-                            <h3 class="font-serif text-2xl font-bold text-vintage-green tracking-wide">SOUPS AND CHILI</h3>
-                        </div>
+                    <!-- Soups & Chili -->
+                    <div>
+                        <h3 class="text-xl font-serif font-bold text-center border-b-2 border-retroTeal/10 pb-2 mb-6 tracking-wide uppercase text-retroTeal">[Soups and Chili]</h3>
                         <div class="space-y-6">
                             <div>
-                                <div class="flex justify-between items-baseline border-b border-dotted border-stone-300 pb-1">
-                                    <span class="font-serif font-bold text-vintage-green text-base sm:text-lg">Soup & Chili</span>
-                                    <span class="font-bold text-vintage-gold text-sm sm:text-base">Cup $3.99 / Bowl $4.99</span>
+                                <div class="flex justify-between items-baseline">
+                                    <span class="font-semibold text-lg">Soup & Chili</span>
+                                    <span class="font-semibold text-retroTeal">Cup $3.99 / Bowl $4.99</span>
                                 </div>
-                                <p class="text-xs sm:text-sm italic text-stone-600 mt-1.5">
-                                    Scratch-made daily soups and rich, comforting chili prepared with premium spices and direct from-the-pot flavor.
-                                </p>
+                                <p class="text-sm text-gray-500 italic mt-1">Our signature house recipes, prepared fresh daily to warm you up.</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Salads Category -->
-                    <div class="bg-vintage-cream p-6 sm:p-8 rounded-2xl shadow-md border border-vintage-gold/10">
-                        <div class="border-2 border-dashed border-vintage-gold/30 px-4 py-3 rounded-lg text-center mb-6">
-                            <h3 class="font-serif text-2xl font-bold text-vintage-green tracking-wide">SALADS</h3>
-                        </div>
-                        <div class="bg-vintage-gold/10 text-vintage-green text-center py-2 px-3 rounded-lg mb-6 text-xs sm:text-sm font-semibold tracking-wide">
-                            💡 *Note: Add Grilled Chicken to any salad for $3.49*
-                        </div>
+                    <!-- Salads -->
+                    <div>
+                        <h3 class="text-xl font-serif font-bold text-center border-b-2 border-retroTeal/10 pb-2 mb-4 tracking-wide uppercase text-retroTeal">[Salads]</h3>
+                        <div class="text-center text-xs italic text-gray-500 mb-6 font-semibold">Note: Add Grilled Chicken to any salad for $3.49</div>
                         <div class="space-y-6">
-                            <!-- Green Salad -->
                             <div>
-                                <div class="flex justify-between items-baseline border-b border-
+                                <div class="flex justify-between items-baseline">
+                                    <span class="font-semibold text-lg">Green Salad</span>
+                                    <span class="font-semibold text-retroTeal">Small $5.99 / Large $7.99</span>
+                                </div>
+                                <p class="text-sm text-gray-500 italic mt-1">A crisp bed of mixed field greens topped with fresh garden vegetables.</p>
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-baseline">
+                                    <span class="font-semibold text-lg">Greek Salad</span>
+                                    <span class="font-semibold text-retroTeal">Small $6.59 / Large $8.99</span>
+                                </div>
+                                <p class="text-sm text-gray-500 italic mt-1">Romaine lettuce tossed with black olives, red onions, tomatoes, and tangy feta cheese.</p>
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-baseline">
+                                    <span class="font-semibold text-lg">Caesar Salad</span>
+                                    <span class="font-semibold text-retroTeal">Small $6.99 / Large $8.59</span>
+                                </div>
+                                <p class="text-sm text-gray-500 italic mt-1">Crisp romaine tossed in rich Caesar dressing, completed with crunchy croutons and parmesan.</p>
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-baseline">
+                                    <span class="font-semibold text-lg">Veggie Salad</span>
+                                    <span class="font-semibold text-retroTeal">Small $7.99 / Large $9.79</span>
+                                </div>
+                                <p class="text-sm text-gray-500 italic mt-1">A hearty assortment of fresh raw vegetables layered over a bed of field greens.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Entrees Part 1 -->
+                    <div>
+                        <h3 class="text-xl font-serif font-bold text-center border-b-2 border-retroTeal/10 pb-2 mb-6 tracking-wide uppercase text-retroTeal">[Entrees]</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between items-baseline">
+                                    <span class="font-semibold text-lg">New England Pot Roast</span>
+                                    <span class="font-semibold text-retroTeal">$15.99</span>
+                                </div>
+                                <p class="text-sm text-gray-500 italic mt-1">Slow-cooked, fork-tender beef pot roast served under a blanket of rich home-style gravy.</p>
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-baseline">
+                                    <span class="font-semibold text-lg">Maine Fried Clams</span>
+                                    <span class="font-semibold text-retroTeal">Market Price</span>
+                                </div>
+                                <p class="text-sm text-gray-500 italic mt-1">Fresh, locally sourced clams lightly hand-battered and fried to a crisp golden finish.</p>
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-baseline">
+                                    <span class="font-semibold text-lg">Angus Rib Eye Steak (8oz)</span>
+                                    <span class="font-semibold text-retroTeal">$15.59</span>
+                                </div>
+                                <p class="text-sm text-gray-500 italic mt-1">An 8oz hand-cut Angus rib eye steak, grilled to order and seasoned with savory diner butter.</p>
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-baseline">
+                                    <span class="font-semibold text-lg">Grilled Pork Chops (2)</span>
+                                    <span class="font-semibold text-retroTeal">$14.99 <span class="text-xs font-normal text-gray-500">(With Apple Sauce $15.99)</span></span>
+                                </div>
+                                <p class="text-sm text-gray-500 italic mt-1">Two thick-cut, juicy bone-in pork chops seared on our flat-top grill.</p>
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-baseline">
+                                    <span class="font-semibold text-lg">Meatloaf</span>
+                                    <span class="font-semibold text-retroTeal">$13.99</span>
+                                </div>
+                                <p class="text-sm text-gray-500 italic mt-1">A generous thick-cut slice of our classic house-recipe meatloaf, topped with savory glaze.</p>
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-baseline">
+                                    <span class="font-semibold text-lg">Fried Chicken</span>
+                                    <span class="font-semibold text-retroTeal">$12.99</span>
+                                </div>
+                                <p class="text-sm text-gray-
