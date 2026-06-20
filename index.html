@@ -1,315 +1,298 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A-1 Diner | Modern Interactive Diner Experience</title>
-    
-    <!-- Premium Fonts -->
+    <title>The Iron & Oak | Modern Rustic Restaurant & Tavern</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair Display for Serif, Inter for Sans-Serif -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        offWhite: '#FAFAFA',
-                        slateCharcoal: '#18181B',
-                        amberOrange: '#F97316',
-                        amberOrangeHover: '#EA580C'
+                        charcoal: '#1A1A1A',
+                        leather: '#8B5A2B',
+                        ivory: '#FAF8F5',
+                        amberHighlight: '#D97706',
+                        mutedGold: '#C29B68'
                     },
                     fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
                         sans: ['Inter', 'sans-serif'],
-                        display: ['Plus Jakarta Sans', 'sans-serif']
                     }
                 }
             }
         }
     </script>
-    
     <style>
-        /* Custom scrollbars and styling elements */
-        .scrollbar-none::-webkit-scrollbar {
-            display: none;
+        /* Smooth transitions & custom micro-interactions */
+        .page-transition {
+            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
         }
-        .scrollbar-none {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
+        .page-hidden {
+            opacity: 0;
+            transform: translateY(10px);
+            pointer-events: none;
+            position: absolute;
+            width: 100%;
         }
-        .glass-nav {
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            background-color: rgba(250, 250, 250, 0.75);
+        .page-visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+            position: relative;
         }
-        .toast-animation {
-            animation: slideUpFade 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        /* Custom scrollbar matching palette */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-        @keyframes slideUpFade {
-            from { transform: translateY(12px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        ::-webkit-scrollbar-track {
+            background: #1A1A1A;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #8B5A2B;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D97706;
         }
     </style>
 </head>
-<body class="bg-offWhite text-slateCharcoal font-sans selection:bg-amberOrange/20 selection:text-amberOrange antialiased">
+<body class="bg-[#FAF8F5] text-[#1A1A1A] font-sans antialiased min-h-screen flex flex-col selection:bg-[#8B5A2B] selection:text-white">
 
-    <!-- TOAST NOTIFICATION CONTAINER -->
-    <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-3 max-w-sm w-full pointer-events-none"></div>
+    <!-- Top Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-[#1A1A1A]/95 backdrop-blur-md border-b border-[#8B5A2B]/20 text-[#FAF8F5] transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo Brand -->
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="navigateTo('home')">
+                    <div class="w-10 h-10 border-2 border-[#8B5A2B] flex items-center justify-center rotate-45 transform hover:rotate-180 transition-transform duration-500">
+                        <span class="text-xs font-serif font-bold text-[#D97706] -rotate-45">I&O</span>
+                    </div>
+                    <div>
+                        <span class="font-serif text-xl tracking-widest block font-bold text-[#FAF8F5]">THE IRON & OAK</span>
+                        <span class="text-[10px] tracking-[0.25em] block uppercase text-[#C29B68]">Restaurant & Tavern</span>
+                    </div>
+                </div>
 
-    <!-- MOBILE MENU NAVIGATION DRAWER -->
-    <div id="mobile-menu-drawer" class="fixed inset-0 bg-slateCharcoal/40 z-50 opacity-0 pointer-events-none transition-opacity duration-300">
-        <div id="mobile-menu-content" class="absolute right-0 top-0 bottom-0 w-80 bg-white p-8 flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl">
-            <div>
-                <div class="flex justify-between items-center mb-10">
-                    <span class="font-display font-bold text-xl tracking-tight">Navigation</span>
-                    <button onclick="toggleMobileMenu(false)" class="p-2 text-slate-500 hover:text-slateCharcoal transition-colors">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                <!-- Desktop Navigation Menu -->
+                <div class="hidden md:flex items-center space-x-8 font-medium tracking-wide text-sm">
+                    <button onclick="navigateTo('home')" id="nav-home" class="nav-link text-[#D97706] hover:text-[#D97706] transition-colors duration-200">HOME</button>
+                    <button onclick="navigateTo('menu')" id="nav-menu" class="nav-link text-[#FAF8F5]/80 hover:text-[#D97706] transition-colors duration-200">MENU</button>
+                    <button onclick="navigateTo('reservations')" id="nav-reservations" class="nav-link text-[#FAF8F5]/80 hover:text-[#D97706] transition-colors duration-200">RESERVATIONS</button>
+                    <button onclick="navigateTo('reservations')" class="bg-[#8B5A2B] text-white px-5 py-2.5 rounded-none border border-[#8B5A2B] hover:bg-transparent hover:text-[#D97706] hover:border-[#D97706] transition-all duration-300 text-xs font-semibold tracking-widest">
+                        BOOK A TABLE
                     </button>
                 </div>
-                <nav class="flex flex-col gap-6 font-display font-medium text-lg">
-                    <a href="#hero" onclick="toggleMobileMenu(false)" class="hover:text-amberOrange transition-colors">Home</a>
-                    <a href="#story" onclick="toggleMobileMenu(false)" class="hover:text-amberOrange transition-colors">Our Story</a>
-                    <a href="#testimonials" onclick="toggleMobileMenu(false)" class="hover:text-amberOrange transition-colors">Reviews</a>
-                    <a href="#menu-engine" onclick="toggleMobileMenu(false)" class="hover:text-amberOrange transition-colors">Menu</a>
-                    <a href="#footer" onclick="toggleMobileMenu(false)" class="hover:text-amberOrange transition-colors">Location</a>
-                </nav>
-            </div>
-            <div class="border-t border-slate-100 pt-6 text-xs text-slate-400 space-y-1">
-                <p class="font-bold text-slateCharcoal text-sm mb-1">A-1 Diner</p>
-                <p>3 Bridge St, Gardiner, ME 04345</p>
-                <p>Phone: 207-582-4804</p>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" type="button" class="text-gray-400 hover:text-[#D97706] focus:outline-none focus:text-[#D97706]" aria-controls="mobile-menu" aria-expanded="false">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- STICKY CART DRAWER -->
-    <div id="cart-drawer" class="fixed inset-0 bg-slateCharcoal/40 z-50 opacity-0 pointer-events-none transition-opacity duration-300">
-        <div id="cart-drawer-content" class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-white flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl">
-            <!-- Header -->
-            <div class="p-6 border-b border-slate-100 flex justify-between items-center bg-white sticky top-0 z-10">
-                <div class="flex items-center gap-2.5">
-                    <svg class="w-5 h-5 text-amberOrange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
-                    </svg>
-                    <h3 class="font-display font-bold text-lg tracking-tight">Your Custom Order</h3>
-                </div>
-                <button onclick="toggleCartDrawer(false)" class="p-2 text-slate-400 hover:text-slateCharcoal transition-colors">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-                </button>
-            </div>
-
-            <!-- Items -->
-            <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4 bg-offWhite/50">
-                <div class="text-center py-16 text-slate-400">
-                    <p class="font-display font-semibold text-base text-slateCharcoal mb-1">Your tray is empty</p>
-                    <p class="text-xs">Add standard diner meals to build your dynamic receipt.</p>
-                </div>
-            </div>
-
-            <!-- Calculation Matrix -->
-            <div class="border-t border-slate-100 bg-white p-6 space-y-4 shadow-[0_-8px_24px_rgba(0,0,0,0.02)]">
-                <div class="space-y-2 text-sm text-slate-600">
-                    <div class="flex justify-between">
-                        <span>Subtotal</span>
-                        <span id="cart-subtotal" class="font-medium text-slateCharcoal">$0.00</span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span>Est. State Tax (8%)</span>
-                        <span id="cart-tax" class="font-medium text-slateCharcoal">$0.00</span>
-                    </div>
-                    <div class="border-t border-slate-100 pt-3 flex justify-between text-base font-bold text-slateCharcoal">
-                        <span>Grand Total</span>
-                        <span id="cart-total" class="text-amberOrange">$0.00</span>
-                    </div>
-                </div>
-                <button onclick="triggerCheckout()" id="checkout-button" disabled class="w-full py-4 bg-slate-100 text-slate-400 font-display font-bold tracking-wider text-center rounded-lg transition-all duration-200 cursor-not-allowed">
-                    SUBMIT DINER ORDER
+        <!-- Mobile Menu panel -->
+        <div class="md:hidden hidden bg-[#1A1A1A] border-t border-[#8B5A2B]/20" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
+                <button onclick="navigateTo('home'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 text-base font-medium text-[#FAF8F5] hover:text-[#D97706]">HOME</button>
+                <button onclick="navigateTo('menu'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 text-base font-medium text-[#FAF8F5] hover:text-[#D97706]">MENU</button>
+                <button onclick="navigateTo('reservations'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 text-base font-medium text-[#FAF8F5] hover:text-[#D97706]">RESERVATIONS</button>
+                <button onclick="navigateTo('reservations'); toggleMobileMenu();" class="block w-full bg-[#8B5A2B] text-white px-3 py-3 text-sm font-semibold tracking-widest uppercase mt-4">
+                    BOOK A TABLE
                 </button>
             </div>
         </div>
-    </div>
+    </nav>
 
-    <!-- MODERN ORDER RECEIPT DIALOG (MODAL) -->
-    <div id="receipt-modal" class="fixed inset-0 bg-slateCharcoal/60 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
-        <div class="bg-white max-w-sm w-full p-8 rounded-2xl shadow-2xl border border-slate-100 transform scale-95 transition-transform duration-300 relative">
-            <div class="text-center pb-6 border-b border-dashed border-slate-200">
-                <span class="font-display font-extrabold text-2xl tracking-tight text-slateCharcoal">A-1 DINER</span>
-                <p class="text-xs text-slate-400 mt-1">3 Bridge St, Gardiner, ME 04345</p>
-                <p class="text-xs text-slate-400">Phone: 207-582-4804</p>
-                <div class="mt-4 px-3 py-1 bg-amberOrange/10 text-amberOrange inline-block rounded-full text-[10px] font-bold tracking-widest uppercase">
-                    KITCHEN RECEIPT
-                </div>
-            </div>
+    <!-- Main Dynamic Application Container -->
+    <main class="flex-grow relative overflow-x-hidden">
+
+        <!-- ==============================================
+             PAGE 1: HOME VIEW
+             ============================================== -->
+        <div id="view-home" class="page-transition page-visible">
             
-            <!-- Items Receipt -->
-            <div id="receipt-items" class="py-4 space-y-3 font-mono text-xs text-slate-600 border-b border-dashed border-slate-200"></div>
-            
-            <!-- Subtotals -->
-            <div class="py-4 space-y-1.5 font-mono text-xs text-slate-600">
-                <div class="flex justify-between">
-                    <span>SUBTOTAL:</span>
-                    <span id="receipt-subtotal">$0.00</span>
-                </div>
-                <div class="flex justify-between">
-                    <span>TAX (8.00%):</span>
-                    <span id="receipt-tax">$0.00</span>
-                </div>
-                <div class="flex justify-between font-bold text-slateCharcoal pt-2 border-t border-slate-100 text-sm">
-                    <span>GRAND TOTAL:</span>
-                    <span id="receipt-total">$0.00</span>
-                </div>
-            </div>
-            
-            <!-- Action Dismiss -->
-            <div class="text-center pt-6 space-y-4">
-                <p class="text-[10px] text-slate-400 leading-relaxed">Your order has been compiled in our historic database. Head to the counter register inside the railroad car to finalize. Thank you!</p>
-                <button onclick="closeReceipt()" class="w-full py-3 bg-slateCharcoal hover:bg-slate-800 text-white font-display text-sm font-bold tracking-wider rounded-lg transition-colors">
-                    CLOSE CONFIRMATION
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- 1. STICKY GLASSMORPHISM NAVIGATION -->
-    <header class="glass-nav sticky top-0 z-40 border-b border-slate-100 transition-shadow duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex justify-between items-center">
-            
-            <!-- Left: Brand Logo -->
-            <a href="#hero" class="flex items-center gap-2 group">
-                <span class="font-display font-extrabold text-xl sm:text-2xl tracking-tight text-slateCharcoal group-hover:text-amberOrange transition-colors">A-1 Diner</span>
-                <span class="w-1.5 h-1.5 rounded-full bg-amberOrange"></span>
-            </a>
-
-            <!-- Center: Desktop Navigation Links -->
-            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-500">
-                <a href="#hero" class="hover:text-amberOrange transition-colors">Home</a>
-                <a href="#story" class="hover:text-amberOrange transition-colors">Our Story</a>
-                <a href="#testimonials" class="hover:text-amberOrange transition-colors">Reviews</a>
-                <a href="#menu-engine" class="hover:text-amberOrange transition-colors">Menu</a>
-                <a href="#footer" class="hover:text-amberOrange transition-colors">Location</a>
-            </nav>
-
-            <!-- Right: Interactive Buttons -->
-            <div class="flex items-center gap-4">
-                <!-- Shopping Bag Trigger -->
-                <button onclick="toggleCartDrawer(true)" class="relative p-2.5 bg-white border border-slate-100 rounded-full text-slate-600 hover:text-amberOrange hover:border-amberOrange/20 shadow-sm transition-all duration-200" aria-label="Open Cart">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
-                    </svg>
-                    <!-- Floating badge dynamic element -->
-                    <span id="cart-badge-counter" class="absolute -top-1.5 -right-1.5 bg-amberOrange text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border border-white opacity-0 scale-0 transition-all duration-300">
-                        0
-                    </span>
-                </button>
-
-                <!-- Mobile Navigation Toggle Burger -->
-                <button onclick="toggleMobileMenu(true)" class="md:hidden p-2.5 bg-white border border-slate-100 rounded-full text-slate-600 hover:text-slateCharcoal shadow-sm transition-all" aria-label="Open Menu">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                    </svg>
-                </button>
-            </div>
-
-        </div>
-    </header>
-
-    <!-- 2. DYNAMIC HERO SECTION -->
-    <section id="hero" class="relative py-16 sm:py-24 lg:py-32 overflow-hidden bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-                
-                <!-- Left Content Column -->
-                <div class="lg:col-span-7 space-y-6 sm:space-y-8 text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-amberOrange/10 rounded-full text-xs font-semibold text-amberOrange tracking-wide">
-                        <span class="w-1.5 h-1.5 rounded-full bg-amberOrange animate-ping"></span>
-                        Authentic Worcester Car No. 784
-                    </div>
-                    
-                    <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.1] text-slateCharcoal">
-                        Legendary Comfort Food. <br class="hidden sm:inline">Classic Diner Hospitality.
+            <!-- Cinematic Hero Section -->
+            <section class="relative h-[85vh] flex items-center justify-center bg-cover bg-center" style="background-image: linear-gradient(rgba(26,26,26,0.75), rgba(26,26,26,0.85)), url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1920&q=80');">
+                <div class="absolute inset-0 bg-gradient-to-b from-transparent to-[#FAF8F5]/10"></div>
+                <div class="relative z-10 text-center max-w-4xl px-4 mx-auto">
+                    <span class="text-[#D97706] font-semibold tracking-[0.3em] uppercase text-xs sm:text-sm block mb-4">EST. 2018 | MODERN RUSTIC CLASSICS</span>
+                    <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-bold text-[#FAF8F5] tracking-tight leading-none mb-6">
+                        Legendary Flavors.<br>Timeless Hospitality.
                     </h1>
-                    
-                    <p class="text-slate-500 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed font-light">
-                        Step into a slice of history—serving up timeless flavor and friendly smiles right from our iconic vintage car setup.
+                    <div class="w-24 h-[2px] bg-[#8B5A2B] mx-auto my-6"></div>
+                    <p class="text-[#FAF8F5]/90 text-sm sm:text-lg max-w-xl mx-auto font-light leading-relaxed mb-8">
+                        Indulge in carefully crafted dishes smoke-infused in cast iron, highlighting wood-fired premium cuts, artisanal ingredients, and historic tavern hospitality.
                     </p>
-
-                    <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
-                        <a href="#menu-engine" class="px-8 py-4 bg-amberOrange hover:bg-amberOrangeHover text-white font-display font-bold text-sm tracking-wide rounded-lg shadow-lg hover:shadow-orange-500/15 transition-all duration-200">
-                            📋 View Menu
-                        </a>
-                        <a href="#footer" class="px-8 py-4 bg-slateCharcoal hover:bg-slate-800 text-white font-display font-bold text-sm tracking-wide rounded-lg transition-all duration-200">
-                            📍 Get Directions
-                        </a>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button onclick="navigateTo('menu')" class="bg-[#8B5A2B] hover:bg-transparent border border-[#8B5A2B] text-[#FAF8F5] hover:text-[#D97706] hover:border-[#D97706] px-8 py-3.5 tracking-widest text-xs font-bold transition-all duration-300">
+                            EXPLORE THE MENU
+                        </button>
+                        <button onclick="navigateTo('reservations')" class="bg-transparent hover:bg-[#FAF8F5]/10 border border-[#FAF8F5]/30 text-[#FAF8F5] px-8 py-3.5 tracking-widest text-xs font-bold transition-all duration-300">
+                            RESERVE A TABLE
+                        </button>
                     </div>
                 </div>
+            </section>
 
-                <!-- Right Mock Interactive Feature Column -->
-                <div class="lg:col-span-5 relative">
-                    <!-- Dynamic Accent Circle Background -->
-                    <div class="absolute -inset-4 bg-gradient-to-r from-amberOrange/10 to-orange-100/30 rounded-3xl blur-2xl opacity-75 -z-10"></div>
-                    
-                    <!-- Decorative Showcase Card -->
-                    <div class="bg-white border border-slate-100 rounded-2xl p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.03)] space-y-6">
-                        <div class="flex justify-between items-center">
-                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">DISH OF THE DAY</span>
-                            <span class="px-2.5 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wide">Fresh Catch</span>
+            <!-- Quick Action Block: Location, Hours, Contact Info -->
+            <section class="relative z-20 max-w-6xl mx-auto -mt-16 px-4 mb-20">
+                <div class="grid grid-cols-1 md:grid-cols-3 bg-[#1A1A1A] border-t-4 border-[#8B5A2B] shadow-2xl text-[#FAF8F5]">
+                    <!-- Address Block -->
+                    <div class="p-8 border-b md:border-b-0 md:border-r border-[#8B5A2B]/20 flex items-start gap-4">
+                        <div class="text-[#D97706] text-xl mt-1">
+                            <i class="fa-solid fa-map-location-dot"></i>
                         </div>
-                        
-                        <div class="space-y-2">
-                            <div class="flex justify-between items-baseline">
-                                <h3 class="font-display font-extrabold text-lg text-slateCharcoal">Maine Fried Clams</h3>
-                                <span class="font-display font-bold text-amberOrange">$18.00</span>
+                        <div>
+                            <h3 class="font-serif text-lg font-bold tracking-wider mb-2">OUR LOCATION</h3>
+                            <p class="text-sm text-[#FAF8F5]/80 font-light leading-relaxed">
+                                482 Timber Creek Pass<br>Silverthorne, CO 80498
+                            </p>
+                            <a href="https://maps.google.com" target="_blank" class="inline-block mt-3 text-xs font-semibold text-[#D97706] hover:underline tracking-wider">GET DIRECTIONS <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                        </div>
+                    </div>
+                    <!-- Hours Block -->
+                    <div class="p-8 border-b md:border-b-0 md:border-r border-[#8B5A2B]/20 flex items-start gap-4">
+                        <div class="text-[#D97706] text-xl mt-1">
+                            <i class="fa-regular fa-clock"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-serif text-lg font-bold tracking-wider mb-2">RESTAURANT HOURS</h3>
+                            <div class="text-sm text-[#FAF8F5]/80 font-light space-y-1">
+                                <p class="flex justify-between gap-8"><span>Mon – Thurs:</span> <span class="font-medium text-[#FAF8F5]">4 PM – 10 PM</span></p>
+                                <p class="flex justify-between gap-8"><span>Fri – Sat:</span> <span class="font-medium text-[#FAF8F5]">3 PM – 11 PM</span></p>
+                                <p class="flex justify-between gap-8"><span>Sunday Brunch:</span> <span class="font-medium text-[#FAF8F5]">10 AM – 9 PM</span></p>
                             </div>
-                            <p class="text-xs text-slate-500 italic font-sans">Authentic fresh local coastal Maine clams hand-battered and flash fried to perfect gold crisps.</p>
                         </div>
+                    </div>
+                    <!-- Contact Block -->
+                    <div class="p-8 flex items-start gap-4">
+                        <div class="text-[#D97706] text-xl mt-1">
+                            <i class="fa-solid fa-phone-volume"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-serif text-lg font-bold tracking-wider mb-2">SAY HELLO</h3>
+                            <p class="text-sm text-[#FAF8F5]/80 font-light mb-1">General Inquiries & Group Events:</p>
+                            <p class="text-lg font-semibold text-[#D97706] mb-1">(970) 555-0142</p>
+                            <p class="text-xs text-[#FAF8F5]/60">reservations@theironandoak.com</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-                        <!-- Mini interactive click indicator inside dynamic mock up card -->
-                        <div class="pt-4 border-t border-slate-50 flex justify-between items-center">
-                            <span class="text-[11px] text-slate-400 font-medium">Ready to Order?</span>
-                            <button onclick="handleAddToCart('fried-clams')" class="px-4 py-2 bg-slateCharcoal hover:bg-amberOrange hover:text-white text-white rounded-md text-xs font-display font-semibold transition-colors duration-200">
-                                + Add to Order
+            <!-- Our Story Section -->
+            <section class="py-16 px-4 max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-5 relative space-y-4">
+                        <span class="text-[#8B5A2B] font-semibold tracking-widest text-xs uppercase block">THE HERITAGE</span>
+                        <h2 class="font-serif text-3xl sm:text-5xl font-bold text-[#1A1A1A] tracking-tight leading-tight">
+                            Honest cooking crafted with wood, iron, and fire.
+                        </h2>
+                        <div class="w-16 h-[2px] bg-[#8B5A2B] my-4"></div>
+                        <p class="text-gray-700 leading-relaxed font-light text-base">
+                            At The Iron & Oak, our culinary philosophy centers on clean, robust flavor profiles brought to life over open flames. Guided by historical tavern recipes and locally sourced Colorado ingredients, we dry-age our meats and premium cuts, using genuine oak and hickory woods.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed font-light text-base">
+                            Every meal is served in cast iron skillets or over local slate to lock in optimal heat and flavor. From slow-smoked ribs to signature bison burgers, we invite you to sit back and experience rustic, premium dining.
+                        </p>
+                        <div class="pt-4">
+                            <button onclick="navigateTo('menu')" class="group text-sm font-semibold tracking-wider text-[#8B5A2B] hover:text-[#D97706] transition-colors duration-200">
+                                EXPLORE COMFORT FOOD <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
                             </button>
                         </div>
                     </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- 3. OUR STORY & VIBE SECTION -->
-    <section id="story" class="py-20 sm:py-24 bg-offWhite border-t border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
-            
-            <!-- Block 1: Historic editorial -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
-                <div class="lg:col-span-5">
-                    <span class="text-amberOrange text-xs font-bold tracking-widest uppercase block mb-2">LANDMARK ORIGINS</span>
-                    <h2 class="font-display font-extrabold text-2xl sm:text-3xl tracking-tight text-slateCharcoal mb-4">A True Historic Landmark</h2>
-                </div>
-                <div class="lg:col-span-7">
-                    <p class="text-slate-600 text-sm sm:text-base leading-relaxed font-light">
-                        A-1 Diner is beautifully housed inside an authentic suspended railroad car, delivering a cozy, historic atmosphere full of community charm. From the moment you step up the historic platforms, you are transported into a classic era of memory-making flavors. We serve a beloved blend of timeless comfort foods and modern plates to diners from near and far.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Block 2: Interactive Service Experience details -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center pt-8 border-t border-slate-200/60">
-                <div class="lg:col-span-5 order-first lg:order-last">
-                    <span class="text-amberOrange text-xs font-bold tracking-widest uppercase block mb-2">SERVICE EXPERIENCE</span>
-                    <h2 class="font-display font-extrabold text-2xl sm:text-3xl tracking-tight text-slateCharcoal mb-4">The Full Experience</h2>
-                    <p class="text-slate-600 text-sm leading-relaxed mb-6 font-light">
-                        Find comfort your own way. Choose between cozy dine-in counter service, classic table service, a welcoming outdoor patio area, or fast curbside pickup and takeout configurations.
-                    </p>
                     
-                    <!-- Amenity badges -->
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3.5 py-1.5 bg-white border border-slate-200/60 rounded-full text-xs font-semibold text-slateCharcoal shadow-sm">
-                            Family-Friendly
-                        </span>
-                        <span class="px-3.5 py-1.5 bg-white border border-slate-200/60 rounded-full 
+                    <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="space-y-4">
+                            <div class="overflow-hidden shadow-lg border border-[#8B5A2B]/10">
+                                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&h=750&q=80" alt="Slow braising rib meat on dynamic wood embers" class="w-full object-cover h-80 hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="bg-[#1A1A1A] p-8 text-[#FAF8F5] border-l-4 border-[#8B5A2B]">
+                                <h4 class="font-serif text-2xl font-bold mb-2 text-[#D97706]">100%</h4>
+                                <p class="text-xs uppercase tracking-widest text-[#FAF8F5]/80">Prime Colorado Angus & Bison</p>
+                            </div>
+                        </div>
+                        <div class="space-y-4 sm:pt-12">
+                            <div class="bg-[#8B5A2B] p-8 text-[#FAF8F5]">
+                                <h4 class="font-serif text-2xl font-bold mb-2">Wood-Fired</h4>
+                                <p class="text-xs uppercase tracking-widest text-[#FAF8F5]/90">Oak and Hickory Infused Heat</p>
+                            </div>
+                            <div class="overflow-hidden shadow-lg border border-[#8B5A2B]/10">
+                                <img src="https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=600&h=750&q=80" alt="Tavern interior close-up" class="w-full object-cover h-80 hover:scale-105 transition-transform duration-500">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Google-Style Dynamic Review Slider -->
+            <section class="bg-[#1A1A1A] text-[#FAF8F5] py-20 px-4 border-t border-[#8B5A2B]/20 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-96 h-96 bg-[#8B5A2B]/5 rounded-full blur-3xl -mr-20 -mt-20"></div>
+                <div class="max-w-4xl mx-auto relative z-10 text-center">
+                    <span class="text-[#D97706] font-semibold tracking-widest text-xs uppercase block mb-3">TESTIMONIALS</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold mb-10 tracking-wide">WHAT OUR PATRONS SAY</h2>
+
+                    <!-- Review Container -->
+                    <div class="min-h-[220px] flex items-center justify-center">
+                        <div id="carousel-inner" class="transition-opacity duration-300 ease-in-out opacity-100">
+                            <!-- Dynamic Content Injected Here -->
+                            <div class="flex justify-center mb-4 text-[#D97706]">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="font-serif text-xl sm:text-2xl italic leading-relaxed text-gray-200 mb-6 max-w-3xl mx-auto">
+                                "The Tavern Half-Pounder is purely magnificent. Smoked oak notes inside the cheese paired with the cozy atmosphere made for a stellar evening."
+                            </p>
+                            <h4 class="text-xs uppercase tracking-[0.2em] font-semibold text-[#8B5A2B]">— Marcus Vance, Google Reviewer</h4>
+                        </div>
+                    </div>
+
+                    <!-- Carousel Controls -->
+                    <div class="flex justify-center items-center gap-6 mt-8">
+                        <button onclick="prevReview()" class="w-10 h-10 border border-[#FAF8F5]/20 rounded-full flex items-center justify-center hover:border-[#D97706] hover:text-[#D97706] transition-colors">
+                            <i class="fa-solid fa-chevron-left text-sm"></i>
+                        </button>
+                        <button onclick="nextReview()" class="w-10 h-10 border border-[#FAF8F5]/20 rounded-full flex items-center justify-center hover:border-[#D97706] hover:text-[#D97706] transition-colors">
+                            <i class="fa-solid fa-chevron-right text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- ==============================================
+             PAGE 2: MENU VIEW
+             ============================================== -->
+        <div id="view-menu" class="page-transition page-hidden">
+            
+            <!-- Menu Page Header -->
+            <section class="relative h-[40vh] flex items-center justify-center bg-cover bg-center" style="background-image: linear-gradient(rgba(26,26,26,0.8), rgba(26,26,26,0.9)), url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1920&q=80');">
+                <div class="relative z-10 text-center px-4">
+                    <span class="text-[#D97706] font-semibold tracking-widest text-xs uppercase block mb-3">SAVOR THE PASSION</span>
+                    <h1 class="font-serif text-4xl sm:text-6xl font-bold text-[#FAF8F5] tracking-tight">Our Tavern Fare</h1>
+                    <div class="w-16 h-[2px] bg-[#8B5A2B] mx-auto mt-4"></div>
+                </div>
+            </section>
+
+            <!-- Dynamic Category Filter Tabs -->
+            <section class="py-10 bg-[#1A1A1A] sticky top-20 z-40 border-y border-[#8B5A2B]/20 shadow-md">
+                <div class="max-w-7xl mx-auto px-4">
+                    <div class="flex flex-wrap justify-center gap-2 sm:gap-4">
+                        <button onclick="filterMenu('all')" id="tab-all" class="menu-tab px-6 py-2.5 text-xs font-semibold tracking-widest uppercase border 
