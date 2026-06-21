@@ -1,297 +1,388 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verdant & Stone — Refined Botanical Dining</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Cormorant Garamond for Serif, Plus Jakarta Sans for Sans-Serif -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Custom Tailwind Configuration -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        fogGrey: '#EAEAEA',
-                        alabasterStone: '#F5F4F0',
-                        sageShadow: '#9EAA9F',
-                        walnutWood: '#4A3B32',
-                    },
-                    fontFamily: {
-                        serif: ['"Cormorant Garamond"', 'serif'],
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body {
-            background-color: #F5F4F0;
-            color: #4A3B32;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            overflow-x: hidden;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Grand Imperial | Classic Fine Dining</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-        /* Beautiful page view transitions */
-        .page-view {
-            transition: opacity 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            imperialNavy: '#0B132B',
+            champagneGold: '#D4AF37',
+            marbleWhite: '#F7F9FA',
+            darkBrass: '#5C4033',
+            deepCharcoal: '#1A1A1A'
+          },
+          fontFamily: {
+            cinzel: ['Cinzel', 'serif'],
+            cormorant: ['Cormorant Garamond', 'serif'],
+            montserrat: ['Montserrat', 'sans-serif'],
+          }
         }
-        .page-view.hidden-view {
-            opacity: 0;
-            transform: translateY(12px);
-            pointer-events: none;
-            position: absolute;
-            width: 100%;
-            height: 0;
-            overflow: hidden;
-        }
-        .page-view.active-view {
-            opacity: 1;
-            transform: translateY(0);
-            position: relative;
-            height: auto;
-            pointer-events: auto;
-        }
+      }
+    }
+  </script>
 
-        /* Custom light scrollbars */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #F5F4F0;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #9EAA9F;
-            border-radius: 3px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #4A3B32;
-        }
-    </style>
+  <style>
+    /* Premium Art Deco Accent & Structural Styling */
+    body {
+      background-color: #0B132B;
+      color: #F7F9FA;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    /* Art Deco Borders & Lines */
+    .art-deco-border {
+      border: 1px solid #D4AF37;
+      position: relative;
+    }
+    .art-deco-border::before {
+      content: '';
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      right: 4px;
+      bottom: 4px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      pointer-events: none;
+    }
+
+    /* Corner Accent Ornaments */
+    .art-deco-corners {
+      position: relative;
+    }
+    .art-deco-corners::after {
+      content: '';
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-top: 2px solid #D4AF37;
+      border-left: 2px solid #D4AF37;
+      top: -3px;
+      left: -3px;
+    }
+    .art-deco-corners::before {
+      content: '';
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-bottom: 2px solid #D4AF37;
+      border-right: 2px solid #D4AF37;
+      bottom: -3px;
+      right: -3px;
+    }
+
+    /* Custom Transitions */
+    .nav-link {
+      position: relative;
+      transition: color 0.4s ease;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      bottom: -4px;
+      left: 0;
+      background-color: #D4AF37;
+      transition: width 0.4s ease;
+    }
+    .nav-link:hover::after, .nav-link.active::after {
+      width: 100%;
+    }
+
+    /* Dynamic Page View Transitions */
+    .page-view {
+      display: none;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .page-view.active-view {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Subtle Gold Text Shadow */
+    .gold-glow {
+      text-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+    }
+
+    /* Custom Input States */
+    input, select, textarea {
+      background-color: rgba(11, 19, 43, 0.6) !important;
+      border: 1px solid #5C4033 !important;
+      color: #F7F9FA !important;
+      transition: all 0.3s ease;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: #D4AF37 !important;
+      outline: none;
+      box-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
+    }
+  </style>
 </head>
-<body class="flex flex-col min-h-screen">
+<body class="min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-champagneGold selection:text-imperialNavy">
 
-    <!-- Top Delicate Announcement Line -->
-    <div class="bg-[#EFECE6] text-walnutWood text-[11px] tracking-[0.2em] uppercase py-2 px-4 text-center border-b border-fogGrey font-sans font-light">
-        Honoring the Micro-Seasons • Fall Table Selections Currently Active
+  <!-- TOP DECORATIVE BRASS LINE -->
+  <div class="h-1 bg-gradient-to-r from-darkBrass via-champagneGold to-darkBrass w-full"></div>
+
+  <!-- NAVIGATION BAR -->
+  <header class="sticky top-0 z-50 bg-imperialNavy/95 border-b border-darkBrass/60 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-6 py-5 flex flex-col md:flex-row justify-between items-center gap-4">
+      
+      <!-- Brand Logo / Signage -->
+      <a href="#home" data-target="home" class="flex flex-col items-center group cursor-pointer">
+        <span class="font-cinzel text-2xl md:text-3xl tracking-[0.25em] text-champagneGold gold-glow transition-transform duration-700 group-hover:scale-105">
+          THE GRAND IMPERIAL
+        </span>
+        <span class="font-montserrat text-[9px] uppercase tracking-[0.4em] text-marbleWhite/60 mt-1">
+          Classic Fine Dining • Est. 1928
+        </span>
+      </a>
+
+      <!-- Navigation Router Controls -->
+      <nav class="flex items-center gap-8 md:gap-12 font-montserrat text-xs uppercase tracking-widest mt-2 md:mt-0">
+        <a href="#home" data-target="home" class="nav-link text-marbleWhite hover:text-champagneGold py-1 active">Home</a>
+        <a href="#menu" data-target="menu" class="nav-link text-marbleWhite hover:text-champagneGold py-1">Menu</a>
+        <a href="#reservations" data-target="reservations" class="nav-link text-marbleWhite/80 hover:text-champagneGold py-1">Reservations</a>
+      </nav>
+
+      <!-- Quick Booking CTA -->
+      <a href="#reservations" data-target="reservations" class="hidden lg:inline-block font-cinzel text-xs uppercase tracking-widest border border-champagneGold/75 text-champagneGold px-6 py-2.5 transition-all duration-300 hover:bg-champagneGold hover:text-imperialNavy">
+        Reserve Table
+      </a>
     </div>
+  </header>
 
-    <!-- Navigation Header -->
-    <header class="sticky top-0 z-50 bg-alabasterStone/90 backdrop-blur-md border-b border-fogGrey transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            
-            <!-- Logo Branding -->
-            <a href="#home" onclick="navigateTo('home')" class="flex items-center gap-3 group">
-                <div class="w-8 h-8 rounded-full border border-sageShadow flex items-center justify-center transition-all duration-500 group-hover:border-walnutWood">
-                    <div class="w-2 h-2 bg-sageShadow rounded-full transition-transform duration-500 group-hover:scale-150"></div>
-                </div>
-                <div class="flex flex-col">
-                    <span class="font-serif text-xl tracking-[0.15em] uppercase text-walnutWood font-light leading-none">Verdant & Stone</span>
-                    <span class="text-[9px] tracking-[0.25em] uppercase text-sageShadow mt-1">Light Nordic Botanicals</span>
-                </div>
-            </a>
+  <!-- MAIN APP ROUTER CONTAINER -->
+  <main class="flex-grow">
 
-            <!-- Desktop Navigation Links -->
-            <nav class="hidden md:flex items-center gap-10">
-                <a href="#home" onclick="navigateTo('home')" id="nav-home" class="nav-link font-sans text-xs tracking-[0.2em] uppercase text-walnutWood hover:text-sageShadow transition-colors duration-300 py-2 relative">
-                    Home
-                    <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-sageShadow rounded-full opacity-0 transition-opacity duration-300"></span>
-                </a>
-                <a href="#menu" onclick="navigateTo('menu')" id="nav-menu" class="nav-link font-sans text-xs tracking-[0.2em] uppercase text-sageShadow hover:text-walnutWood transition-colors duration-300 py-2 relative">
-                    Menu
-                    <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-sageShadow rounded-full opacity-0 transition-opacity duration-300"></span>
-                </a>
-                <a href="#reservations" onclick="navigateTo('reservations')" id="nav-reservations" class="nav-link font-sans text-xs tracking-[0.2em] uppercase text-sageShadow hover:text-walnutWood transition-colors duration-300 py-2 relative">
-                    Reservations
-                    <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-sageShadow rounded-full opacity-0 transition-opacity duration-300"></span>
-                </a>
-            </nav>
-
-            <!-- Reservation CTA Button -->
-            <div class="hidden md:block">
-                <button onclick="navigateTo('reservations')" class="border border-sageShadow text-walnutWood hover:bg-sageShadow hover:text-white hover:border-sageShadow transition-all duration-300 font-sans text-xs tracking-[0.2em] uppercase px-5 py-2.5 bg-transparent">
-                    Secure Table
-                </button>
-            </div>
-
-            <!-- Mobile Drawer Button -->
-            <button id="mobile-drawer-toggle" class="md:hidden flex flex-col justify-center items-end w-8 h-8 gap-1.5 focus:outline-none" aria-label="Toggle Menu">
-                <span class="w-6 h-[1px] bg-walnutWood transition-all duration-300"></span>
-                <span class="w-4 h-[1px] bg-walnutWood transition-all duration-300"></span>
-                <span class="w-5 h-[1px] bg-sageShadow transition-all duration-300"></span>
-            </button>
+    <!-- ============================================= -->
+    <!-- 1. HOME VIEW                                  -->
+    <!-- ============================================= -->
+    <section id="view-home" class="page-view active-view">
+      
+      <!-- Cinematic Hero Section -->
+      <div class="relative h-[85vh] flex items-center justify-center bg-black overflow-hidden">
+        <!-- Visual Background Layer -->
+        <div class="absolute inset-0 opacity-40 bg-cover bg-center transition-transform duration-[12000ms] scale-105 hover:scale-100" 
+             style="background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=1920');">
         </div>
-
-        <!-- Mobile Drawer Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-alabasterStone border-b border-fogGrey">
-            <div class="flex flex-col px-6 py-8 gap-6">
-                <a href="#home" onclick="navigateTo('home'); toggleMobileMenu()" class="font-sans text-sm tracking-[0.2em] uppercase text-walnutWood py-1">Home</a>
-                <a href="#menu" onclick="navigateTo('menu'); toggleMobileMenu()" class="font-sans text-sm tracking-[0.2em] uppercase text-sageShadow py-1">Menu</a>
-                <a href="#reservations" onclick="navigateTo('reservations'); toggleMobileMenu()" class="font-sans text-sm tracking-[0.2em] uppercase text-sageShadow py-1">Reservations</a>
-                <button onclick="navigateTo('reservations'); toggleMobileMenu()" class="border border-sageShadow text-walnutWood text-center font-sans text-xs tracking-[0.2em] uppercase py-3 mt-2 w-full">
-                    Secure Table
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <main class="flex-grow">
+        <!-- Absolute Dark Vignette Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-t from-imperialNavy via-transparent to-black/80"></div>
         
-        <!-- PAGE 1: HOME -->
-        <div id="page-home" class="page-view active-view">
+        <!-- Framing Lines -->
+        <div class="absolute inset-12 border border-champagneGold/20 pointer-events-none hidden md:block"></div>
+
+        <!-- Hero Content -->
+        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+          <div class="inline-block mb-4">
+            <span class="text-champagneGold text-2xl tracking-[0.3em] font-cinzel">♦</span>
+          </div>
+          <h1 class="font-cinzel text-4xl sm:text-6xl md:text-7xl font-light tracking-wide text-marbleWhite leading-tight">
+            Timeless Elegance.<br>Orchestrated Flavors.
+          </h1>
+          <p class="font-cormorant text-xl sm:text-2xl md:text-3xl text-marbleWhite/80 italic mt-6 max-w-2xl mx-auto font-light leading-relaxed">
+            Experience culinary theatre directed by tradition and expressed through modern execution.
+          </p>
+          
+          <div class="mt-10 flex flex-col sm:flex-row justify-center items-center gap-5">
+            <a href="#menu" data-target="menu" class="w-full sm:w-auto font-cinzel text-xs tracking-[0.2em] uppercase bg-champagneGold text-imperialNavy px-8 py-4 transition-all duration-300 hover:bg-marbleWhite hover:text-imperialNavy art-deco-corners">
+              Explore The Menu
+            </a>
+            <a href="#reservations" data-target="reservations" class="w-full sm:w-auto font-cinzel text-xs tracking-[0.2em] uppercase border border-marbleWhite/40 text-marbleWhite px-8 py-4 transition-all duration-300 hover:border-champagneGold hover:text-champagneGold">
+              Secure a Table
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Info Strip -->
+      <div class="bg-deepCharcoal py-8 border-y border-darkBrass/50">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-darkBrass/40">
+          <div class="py-4 md:py-0">
+            <p class="font-montserrat text-[10px] uppercase tracking-[0.2em] text-champagneGold">Location</p>
+            <p class="font-cinzel text-lg text-marbleWhite mt-2">724 Grand Imperial Pkwy, NY</p>
+          </div>
+          <div class="py-4 md:py-0">
+            <p class="font-montserrat text-[10px] uppercase tracking-[0.2em] text-champagneGold">Dinner Service</p>
+            <p class="font-cinzel text-lg text-marbleWhite mt-2">Mon - Sun | 5:00 PM - 11:00 PM</p>
+          </div>
+          <div class="py-4 md:py-0">
+            <p class="font-montserrat text-[10px] uppercase tracking-[0.2em] text-champagneGold">Reservations</p>
+            <p class="font-cinzel text-lg text-marbleWhite mt-2">+1 (212) 555-8900</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- "Our Story" Section -->
+      <section class="py-24 max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+          
+          <!-- Column 1: Elegant Imagery Grid -->
+          <div class="lg:col-span-6 grid grid-cols-12 gap-4 relative">
+            <div class="col-span-8 art-deco-border p-1.5">
+              <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&q=80&w=800" alt="Restaurant Interior" class="w-full h-80 object-cover">
+            </div>
+            <div class="col-span-4 mt-12 art-deco-border p-1.5">
+              <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&q=80&w=500" alt="Sommelier Pouring Wine" class="w-full h-48 object-cover">
+            </div>
+            <!-- Decorative Accent Box -->
+            <div class="absolute -bottom-6 right-8 w-1/3 bg-deepCharcoal p-6 border border-darkBrass hidden sm:block">
+              <p class="font-cinzel text-2xl text-champagneGold text-center">1928</p>
+              <p class="font-montserrat text-[9px] uppercase tracking-widest text-center text-marbleWhite/60 mt-1">Founding Year</p>
+            </div>
+          </div>
+
+          <!-- Column 2: Text Layout -->
+          <div class="lg:col-span-6 space-y-8">
+            <div class="space-y-2">
+              <p class="font-montserrat text-xs uppercase tracking-[0.3em] text-champagneGold">Legacy of Mastery</p>
+              <h2 class="font-cinzel text-3xl sm:text-5xl text-marbleWhite tracking-wide">A Century of Gastronomy</h2>
+              <div class="w-24 h-[1px] bg-champagneGold mt-4"></div>
+            </div>
             
-            <!-- Cinematic Bright Hero -->
-            <section class="relative min-h-[85vh] flex items-center justify-center bg-cover bg-center bg-no-repeat" style="background-image: linear-gradient(to bottom, rgba(245, 244, 240, 0.4), rgba(245, 244, 240, 0.95)), url('https://images.unsplash.com/photo-1543007630-9710e4a00a20?auto=format&fit=crop&w=1920&q=80');">
-                <div class="max-w-4xl mx-auto px-6 text-center z-10 space-y-8">
-                    <span class="font-sans text-xs tracking-[0.3em] uppercase text-sageShadow block">Crafted Botanical Heritage</span>
-                    <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-walnutWood font-light tracking-wide leading-[1.1]">
-                        Rooted in Nature.<br>
-                        <span class="italic font-normal">Refined by Hand.</span>
-                    </h1>
-                    <p class="text-walnutWood/80 text-sm sm:text-base md:text-lg max-w-xl mx-auto font-light leading-relaxed">
-                        Indulge in unhurried plate compositions featuring fresh botanical components, clean waters, and local grass pastures.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-                        <button onclick="navigateTo('menu')" class="w-full sm:w-auto bg-sageShadow text-white hover:bg-walnutWood hover:border-walnutWood border border-transparent font-sans text-xs tracking-[0.2em] uppercase px-8 py-4 transition-all duration-300">
-                            The Menu Collection
-                        </button>
-                        <button onclick="navigateTo('reservations')" class="w-full sm:w-auto border border-sageShadow text-walnutWood hover:border-walnutWood font-sans text-xs tracking-[0.2em] uppercase px-8 py-4 transition-all duration-300">
-                            Book Seating
-                        </button>
-                    </div>
+            <p class="font-cormorant text-lg text-marbleWhite/80 leading-relaxed font-light">
+              Founded during the pinnacle of the Art Deco era, The Grand Imperial has stood as a sanctuary of epicurean excellence for generations. Inside these walls, historical reverence meets innovative execution, creating an atmosphere that respects the past while defining the contemporary frontier of fine dining.
+            </p>
+            
+            <p class="font-cormorant text-lg text-marbleWhite/80 leading-relaxed font-light">
+              Every dish is orchestrated as a performance. We secure rare, seasonal ingredients from sustainable generational estates and present them with meticulous tableside service that transforms dining from a meal into a permanent memory.
+            </p>
+
+            <div class="pt-4">
+              <a href="#menu" data-target="menu" class="font-cinzel text-xs uppercase tracking-widest text-champagneGold hover:text-marbleWhite transition-colors duration-300 inline-flex items-center gap-3">
+                <span>View Our Menu Legacy</span>
+                <span class="text-lg">→</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Dynamic Testimonial Carousel Section -->
+      <section class="py-20 bg-deepCharcoal/50 border-y border-darkBrass/30 relative">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+          <p class="font-montserrat text-xs uppercase tracking-[0.3em] text-champagneGold mb-3">Patron Testimonials</p>
+          <div class="inline-flex items-center gap-1 text-champagneGold mb-8">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            <span class="text-xs text-marbleWhite/60 font-montserrat ml-2">5.0 Star Rated (Google Reviews)</span>
+          </div>
+
+          <!-- Slider Container -->
+          <div class="relative h-48 md:h-40 overflow-hidden">
+            <!-- Slide 1 -->
+            <div id="slide-0" class="testimonial-slide absolute inset-0 opacity-100 transition-opacity duration-1000 flex flex-col justify-center">
+              <p class="font-cormorant text-xl md:text-2xl italic text-marbleWhite/90 leading-relaxed">
+                "An unforgettable evening. The Chateaubriand was prepared beautifully, but the true theater was the impeccable tableside service. It felt like stepping back into 1930s elegance."
+              </p>
+              <p class="font-cinzel text-xs uppercase tracking-[0.15em] text-champagneGold mt-6">— Lady Genevieve V.</p>
+            </div>
+            <!-- Slide 2 -->
+            <div id="slide-1" class="testimonial-slide absolute inset-0 opacity-0 transition-opacity duration-1000 flex flex-col justify-center">
+              <p class="font-cormorant text-xl md:text-2xl italic text-marbleWhite/90 leading-relaxed">
+                "The Imperial Wagyu Burger is culinary art disguised as comfort food. Combined with the deep midnight blue architecture, the ambiance is peerless."
+              </p>
+              <p class="font-cinzel text-xs uppercase tracking-[0.15em] text-champagneGold mt-6">— Marcus Vance, NY Food Journal</p>
+            </div>
+            <!-- Slide 3 -->
+            <div id="slide-2" class="testimonial-slide absolute inset-0 opacity-0 transition-opacity duration-1000 flex flex-col justify-center">
+              <p class="font-cormorant text-xl md:text-2xl italic text-marbleWhite/90 leading-relaxed">
+                "A rare masterclass in balance. The Champagne Poached Prawns paired with dynamic champagne reductions set a standard that few establishments can hope to reach."
+              </p>
+              <p class="font-cinzel text-xs uppercase tracking-[0.15em] text-champagneGold mt-6">— Chef Antoine L.</p>
+            </div>
+          </div>
+
+          <!-- Carousel Controls -->
+          <div class="flex justify-center gap-3 mt-8">
+            <button id="prev-slide" class="text-marbleWhite/40 hover:text-champagneGold text-lg px-2 transition-colors">←</button>
+            <div class="flex items-center gap-2" id="slide-indicators">
+              <span class="w-1.5 h-1.5 rounded-full bg-champagneGold"></span>
+              <span class="w-1.5 h-1.5 rounded-full bg-marbleWhite/20"></span>
+              <span class="w-1.5 h-1.5 rounded-full bg-marbleWhite/20"></span>
+            </div>
+            <button id="next-slide" class="text-marbleWhite/40 hover:text-champagneGold text-lg px-2 transition-colors">→</button>
+          </div>
+        </div>
+      </section>
+
+    </section>
+
+    <!-- ============================================= -->
+    <!-- 2. MENU VIEW                                  -->
+    <!-- ============================================= -->
+    <section id="view-menu" class="page-view py-16">
+      <div class="max-w-7xl mx-auto px-6">
+        
+        <!-- Header -->
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <p class="font-montserrat text-xs uppercase tracking-[0.3em] text-champagneGold mb-3">Symphony of Flavors</p>
+          <h2 class="font-cinzel text-4xl sm:text-5xl text-marbleWhite tracking-wide">La Carte Principale</h2>
+          <div class="w-24 h-[1px] bg-champagneGold mx-auto mt-4"></div>
+          <p class="font-cormorant text-lg text-marbleWhite/70 mt-4 italic">
+            Curated by Executive Chef Julian Belmont. Individual ingredients sourced from organic estates and presented on pristine marble plateware.
+          </p>
+        </div>
+
+        <!-- Dynamic Category Tabs -->
+        <div class="flex flex-wrap justify-center gap-4 sm:gap-8 border-b border-darkBrass/30 pb-6 mb-12 font-montserrat text-xs uppercase tracking-[0.15em]">
+          <button data-filter="all" class="menu-tab py-2 px-4 text-champagneGold border-b-2 border-champagneGold transition-all duration-300">
+            All Creations
+          </button>
+          <button data-filter="hors-doeuvres" class="menu-tab py-2 px-4 text-marbleWhite/60 hover:text-champagneGold border-b-2 border-transparent hover:border-champagneGold/40 transition-all duration-300">
+            Hors d'oeuvres
+          </button>
+          <button data-filter="entrees-burgers" class="menu-tab py-2 px-4 text-marbleWhite/60 hover:text-champagneGold border-b-2 border-transparent hover:border-champagneGold/40 transition-all duration-300">
+            Les Entrées & Burgers
+          </button>
+          <button data-filter="plats" class="menu-tab py-2 px-4 text-marbleWhite/60 hover:text-champagneGold border-b-2 border-transparent hover:border-champagneGold/40 transition-all duration-300">
+            Les Plats
+          </button>
+          <button data-filter="desserts" class="menu-tab py-2 px-4 text-marbleWhite/60 hover:text-champagneGold border-b-2 border-transparent hover:border-champagneGold/40 transition-all duration-300">
+            Les Desserts
+          </button>
+        </div>
+
+        <!-- 15-Item Menu Card Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="menu-grid">
+          
+          <!-- ITEM 1 -->
+          <div class="menu-card-container" data-category="hors-doeuvres">
+            <div class="art-deco-border p-2 bg-deepCharcoal/40 h-full flex flex-col justify-between group transition-all duration-500 hover:scale-[1.01] hover:bg-deepCharcoal/80">
+              <div class="art-deco-corners relative">
+                <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&q=80&w=600" alt="Escargots en Croûte" class="w-full h-48 object-cover opacity-85 group-hover:opacity-100 transition-opacity duration-500">
+                <span class="absolute top-3 right-3 bg-imperialNavy border border-champagneGold text-champagneGold font-cinzel text-xs px-3 py-1">$22.00</span>
+              </div>
+              <div class="p-4 flex-grow flex flex-col justify-between mt-3">
+                <div>
+                  <h3 class="font-cinzel text-lg tracking-wide text-marbleWhite group-hover:text-champagneGold transition-colors">Escargots en Croûte</h3>
+                  <p class="font-montserrat text-[10px] uppercase text-champagneGold/60 tracking-widest mt-0.5">Hors d'oeuvres</p>
+                  <p class="font-cormorant text-base text-marbleWhite/80 mt-3 italic">Six French land snails, rich garlic-parsley butter, flaky puff pastry shell caps.</p>
                 </div>
-            </section>
+              </div>
+            </div>
+          </div>
 
-            <!-- Our Story Section -->
-            <section class="py-24 bg-alabasterStone border-b border-fogGrey">
-                <div class="max-w-7xl mx-auto px-6">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-                        <div class="space-y-8">
-                            <span class="font-sans text-xs tracking-[0.25em] uppercase text-sageShadow block">Our Philosophical Roots</span>
-                            <h2 class="font-serif text-3xl sm:text-5xl text-walnutWood font-light leading-tight">
-                                Raw elements of soil, water, and timber, carefully aligned.
-                            </h2>
-                            <p class="text-walnutWood/85 text-sm sm:text-base leading-relaxed font-light">
-                                Verdant & Stone was designed out of a respect for raw local botanical textures and minimalist Nordic dining disciplines. We turn away from cluttered culinary trends to instead honor organic farm harvests, crisp ocean catches, and unhurried kitchen processes.
-                            </p>
-                            <p class="text-walnutWood/85 text-sm sm:text-base leading-relaxed font-light">
-                                Each presentation is served on hand-thrown stoneware pottery, with every bite accented by fresh herb elements grown directly inside our integrated restaurant greenhouse.
-                            </p>
-                            <div class="pt-4">
-                                <button onclick="navigateTo('menu')" class="group inline-flex items-center gap-4 text-walnutWood hover:text-sageShadow transition-colors duration-300">
-                                    <span class="font-sans text-xs tracking-[0.2em] uppercase">Explore our courses</span>
-                                    <svg class="w-5 h-5 transform group-hover:translate-x-1.5 transition-transform duration-300 text-sageShadow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="relative">
-                            <div class="absolute inset-0 border border-sageShadow/30 translate-x-4 translate-y-4"></div>
-                            <div class="relative overflow-hidden aspect-[4/5] bg-[#EFECE6]">
-                                <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1000&q=80" alt="Fresh garden harvest presentation" class="w-full h-full object-cover grayscale-[5%] hover:scale-105 transition-transform duration-700">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Hours & Location Details Section -->
-            <section class="py-20 bg-[#EFECE6] border-b border-fogGrey">
-                <div class="max-w-7xl mx-auto px-6">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
-                        
-                        <!-- Col 1: Location Address -->
-                        <div class="space-y-3">
-                            <h3 class="font-sans text-xs tracking-[0.2em] uppercase text-sageShadow font-bold">The Grove Grounds</h3>
-                            <p class="font-serif text-xl text-walnutWood font-light">104 Alabaster Boulevard</p>
-                            <p class="text-xs text-walnutWood/70 font-light">North Hills District, CA 90210</p>
-                            <a href="#" class="inline-block pt-2 text-[10px] tracking-[0.15em] uppercase text-walnutWood hover:text-sageShadow transition-colors duration-200 underline underline-offset-4 decoration-sageShadow">Get Ground Coordinates</a>
-                        </div>
-
-                        <!-- Col 2: Service Hours -->
-                        <div class="space-y-3">
-                            <h3 class="font-sans text-xs tracking-[0.2em] uppercase text-sageShadow font-bold">Dining Service</h3>
-                            <div class="text-walnutWood space-y-1">
-                                <p class="font-serif text-lg font-light">Tuesday — Sunday</p>
-                                <p class="text-xs font-light text-walnutWood/70">Lunch & Evening Seatings: 12:00 PM – 10:00 PM</p>
-                            </div>
-                            <p class="text-[10px] text-walnutWood/60 font-light">Closed Mondays for greenhouse maintenance</p>
-                        </div>
-
-                        <!-- Col 3: Communication Lines -->
-                        <div class="space-y-3">
-                            <h3 class="font-sans text-xs tracking-[0.2em] uppercase text-sageShadow font-bold">Direct Channels</h3>
-                            <p class="font-serif text-xl text-walnutWood font-light">enquiries@verdantstone.com</p>
-                            <p class="text-xs text-walnutWood/70 font-light">+1 (310) 555-0144</p>
-                            <p class="text-[10px] text-walnutWood/60 font-light">Enquire for intimate botanical arrangements</p>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-            <!-- Soft Google-style Testimonials Slider Carousel -->
-            <section class="py-24 bg-alabasterStone overflow-hidden relative">
-                <div class="max-w-5xl mx-auto px-6">
-                    <div class="text-center mb-16 space-y-4">
-                        <span class="font-sans text-xs tracking-[0.25em] uppercase text-sageShadow block">Verified Patron Sentiments</span>
-                        <h2 class="font-serif text-3xl md:text-4xl text-walnutWood font-light">Our Community Journal</h2>
-                    </div>
-
-                    <!-- Slider Viewport and Track -->
-                    <div class="relative">
-                        <!-- Navigation Arrows -->
-                        <div class="absolute -top-12 right-0 flex gap-2">
-                            <button id="prev-slide" class="w-10 h-10 rounded-full border border-sageShadow/30 flex items-center justify-center text-walnutWood hover:border-walnutWood transition-colors duration-300" aria-label="Previous sentiment">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7"></path></svg>
-                            </button>
-                            <button id="next-slide" class="w-10 h-10 rounded-full border border-sageShadow/30 flex items-center justify-center text-walnutWood hover:border-walnutWood transition-colors duration-300" aria-label="Next sentiment">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path></svg>
-                            </button>
-                        </div>
-
-                        <!-- Track Carousel -->
-                        <div class="overflow-hidden mt-6">
-                            <div id="slider-track" class="flex transition-transform duration-500 ease-out gap-6" style="transform: translateX(0px);">
-                                
-                                <!-- Slide 1 -->
-                                <div class="min-w-full md:min-w-[calc(50%-12px)] bg-[#EFECE6] border border-fogGrey p-8 flex flex-col justify-between h-72">
-                                    <div class="space-y-4">
-                                        <div class="flex gap-1 text-sageShadow">
-                                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                                        </div>
-                                        <p class="text-walnutWood font-serif italic text-base sm:text-lg font-light leading-relaxed">
-                                            "The Arctic Charr was remarkably delicate. The cucumber-dill emulsion felt extraordinarily fresh, like a crisp Nordic spring morning."
-                                        </p>
-                                    </div>
-                                    <div class="flex justify-between items-center pt-4 border-t border-fogGrey">
-                                        <span class="font-sans text-xs font-medium tracking-wide text-walnutWood">Dr. Clara Thorne</span>
-                                        <span class="text-[10px] text-sageShadow tracking-widest uppercase">Verified Patron</span>
-                                    </div>
-                                </div>
-
-                                <!-- Slide 2 -->
-                                <div class="min-w-full md:min-w-[calc(50%-12px)] bg-[#EFECE6] border border-fogGrey p-8 flex flex-col justify-between h-72">
-                                    <div class="space-y-4">
-                                        <div class="flex gap-1 text-sageShadow">
-                                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                                        </div>
-                                        <p class="text-walnutWood font-serif italic text-base sm:text-lg font-light leading-relaxed">
-                                            "A beautifully bright space. No dark corners—just lovely natural lighting and simple linen tables. The vegetable courses are outstanding."
-                                        </p>
-                                    </div>
-                                    <div class="flex justify-between items-center pt-4 border-t border-fogGrey">
-                                        <span class="font-sans text-xs font-medium tracking-wide text-walnutWood">Marcus Vane</span>
-                                        <span class="text-[10px] text-sageShadow tracking-widest uppercase">Verified Patron</span>
-                                    </div>
-                                </div>
-
-                                <!-- Slide 3 -->
-                                <div
+          <!-- ITEM 2 -->
+          <div class="menu-card-container" data-category="hors-doeuvres">
+            <div class="art-deco-border p-2 bg-deepCharcoal/40 h-full flex flex-col justify-between group transition-all duration-500 hover:scale-[1.01] hover:bg-deepCharcoal/80">
+              <div class="art-deco-corners relative">
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=600" alt="Foie Gras Torchon" class="w-full h-48 object-cover opacity-85 group-hover:opacity-100 transition-opacity duration-500">
+                <span class="absolute top-3 right-3 bg-imperialNavy border border-champagneGold text-champagneGold font-cinzel text-xs px-3 py-1">$28.00</span>
+              </div>
+            
