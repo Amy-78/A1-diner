@@ -3,27 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carbon & Caviar — High-Octane Modern Fusion</title>
+    <title>Verdant & Stone — Refined Botanical Dining</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Space Grotesk (Tech/Modern), Syne (Aggressive/Luxurious) -->
+    <!-- Google Fonts: Cormorant Garamond for Serif, Plus Jakarta Sans for Sans-Serif -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Custom Style Config & CSS Variables -->
+    <!-- Custom Tailwind Configuration -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        obsidian: '#0B0C10',
-                        titanium: '#1F2833',
-                        electricCopper: '#FF4500',
+                        fogGrey: '#EAEAEA',
+                        alabasterStone: '#F5F4F0',
+                        sageShadow: '#9EAA9F',
+                        walnutWood: '#4A3B32',
                     },
                     fontFamily: {
-                        sans: ['"Space Grotesk"', 'sans-serif'],
-                        display: ['"Syne"', 'sans-serif'],
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
                     }
                 }
             }
@@ -31,28 +32,19 @@
     </script>
     <style>
         body {
-            background-color: #0B0C10;
-            color: #FFFFFF;
-            font-family: 'Space Grotesk', sans-serif;
+            background-color: #F5F4F0;
+            color: #4A3B32;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
         }
 
-        /* Cyberpunk shadow glow styles */
-        .copper-glow {
-            box-shadow: 0 0 15px rgba(255, 69, 0, 0.15);
-        }
-        .copper-glow-hover:hover {
-            box-shadow: 0 0 25px rgba(255, 69, 0, 0.4);
-            border-color: #FF4500;
-        }
-        
-        /* Simulated routing page view classes */
+        /* Beautiful page view transitions */
         .page-view {
-            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: opacity 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         .page-view.hidden-view {
             opacity: 0;
-            transform: translateY(20px) scale(0.98);
+            transform: translateY(12px);
             pointer-events: none;
             position: absolute;
             width: 100%;
@@ -61,86 +53,89 @@
         }
         .page-view.active-view {
             opacity: 1;
-            transform: translateY(0) scale(1);
+            transform: translateY(0);
             position: relative;
             height: auto;
             pointer-events: auto;
         }
 
-        /* Custom scrollbar matching titanium theme */
+        /* Custom light scrollbars */
         ::-webkit-scrollbar {
-            width: 4px;
+            width: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: #0B0C10;
+            background: #F5F4F0;
         }
         ::-webkit-scrollbar-thumb {
-            background: #1F2833;
+            background: #9EAA9F;
+            border-radius: 3px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #FF4500;
+            background: #4A3B32;
         }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
 
-    <!-- Glowing Top Line Indicator -->
-    <div class="h-[2px] bg-gradient-to-r from-transparent via-electricCopper to-transparent w-full"></div>
+    <!-- Top Delicate Announcement Line -->
+    <div class="bg-[#EFECE6] text-walnutWood text-[11px] tracking-[0.2em] uppercase py-2 px-4 text-center border-b border-fogGrey font-sans font-light">
+        Honoring the Micro-Seasons • Fall Table Selections Currently Active
+    </div>
 
-    <!-- Main Navigation Header -->
-    <header class="sticky top-0 z-50 bg-[#0B0C10]/90 backdrop-blur-md border-b border-titanium/40 transition-all duration-300">
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 bg-alabasterStone/90 backdrop-blur-md border-b border-fogGrey transition-all duration-300">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             
             <!-- Logo Branding -->
             <a href="#home" onclick="navigateTo('home')" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 border border-electricCopper/40 flex items-center justify-center transition-all duration-300 group-hover:border-electricCopper">
-                    <span class="font-display font-extrabold text-sm text-electricCopper tracking-tighter">C//C</span>
+                <div class="w-8 h-8 rounded-full border border-sageShadow flex items-center justify-center transition-all duration-500 group-hover:border-walnutWood">
+                    <div class="w-2 h-2 bg-sageShadow rounded-full transition-transform duration-500 group-hover:scale-150"></div>
                 </div>
                 <div class="flex flex-col">
-                    <span class="font-display text-lg tracking-[0.2em] uppercase font-bold text-white">Carbon & Caviar</span>
-                    <span class="text-[9px] tracking-[0.4em] uppercase text-gray-400">High-Octane Lounge</span>
+                    <span class="font-serif text-xl tracking-[0.15em] uppercase text-walnutWood font-light leading-none">Verdant & Stone</span>
+                    <span class="text-[9px] tracking-[0.25em] uppercase text-sageShadow mt-1">Light Nordic Botanicals</span>
                 </div>
             </a>
 
-            <!-- Navigation Menu Links -->
+            <!-- Desktop Navigation Links -->
             <nav class="hidden md:flex items-center gap-10">
-                <a href="#home" onclick="navigateTo('home')" id="nav-home" class="nav-link font-sans text-xs tracking-[0.25em] uppercase text-white hover:text-electricCopper transition-colors duration-300 py-2 relative">
+                <a href="#home" onclick="navigateTo('home')" id="nav-home" class="nav-link font-sans text-xs tracking-[0.2em] uppercase text-walnutWood hover:text-sageShadow transition-colors duration-300 py-2 relative">
                     Home
-                    <span class="absolute bottom-0 left-0 w-0 h-[1.5px] bg-electricCopper transition-all duration-300"></span>
+                    <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-sageShadow rounded-full opacity-0 transition-opacity duration-300"></span>
                 </a>
-                <a href="#menu" onclick="navigateTo('menu')" id="nav-menu" class="nav-link font-sans text-xs tracking-[0.25em] uppercase text-gray-400 hover:text-white transition-colors duration-300 py-2 relative">
+                <a href="#menu" onclick="navigateTo('menu')" id="nav-menu" class="nav-link font-sans text-xs tracking-[0.2em] uppercase text-sageShadow hover:text-walnutWood transition-colors duration-300 py-2 relative">
                     Menu
-                    <span class="absolute bottom-0 left-0 w-0 h-[1.5px] bg-electricCopper transition-all duration-300"></span>
+                    <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-sageShadow rounded-full opacity-0 transition-opacity duration-300"></span>
                 </a>
-                <a href="#reservations" onclick="navigateTo('reservations')" id="nav-reservations" class="nav-link font-sans text-xs tracking-[0.25em] uppercase text-gray-400 hover:text-white transition-colors duration-300 py-2 relative">
+                <a href="#reservations" onclick="navigateTo('reservations')" id="nav-reservations" class="nav-link font-sans text-xs tracking-[0.2em] uppercase text-sageShadow hover:text-walnutWood transition-colors duration-300 py-2 relative">
                     Reservations
-                    <span class="absolute bottom-0 left-0 w-0 h-[1.5px] bg-electricCopper transition-all duration-300"></span>
+                    <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-sageShadow rounded-full opacity-0 transition-opacity duration-300"></span>
                 </a>
             </nav>
 
-            <!-- Reservation Quick Action CTA -->
+            <!-- Reservation CTA Button -->
             <div class="hidden md:block">
-                <button onclick="navigateTo('reservations')" class="border border-electricCopper text-white hover:bg-electricCopper hover:text-obsidian transition-all duration-300 font-sans text-xs tracking-[0.2em] uppercase px-5 py-2.5 bg-transparent copper-glow">
-                    Book Station
+                <button onclick="navigateTo('reservations')" class="border border-sageShadow text-walnutWood hover:bg-sageShadow hover:text-white hover:border-sageShadow transition-all duration-300 font-sans text-xs tracking-[0.2em] uppercase px-5 py-2.5 bg-transparent">
+                    Secure Table
                 </button>
             </div>
 
-            <!-- Mobile Menu Toggle -->
-            <button id="mobile-menu-toggle" class="md:hidden flex flex-col justify-center items-end w-8 h-8 gap-1.5 focus:outline-none" aria-label="Toggle Menu">
-                <span class="w-6 h-[1.5px] bg-white transition-all duration-300"></span>
-                <span class="w-4 h-[1.5px] bg-white transition-all duration-300"></span>
-                <span class="w-5 h-[1.5px] bg-electricCopper transition-all duration-300"></span>
+            <!-- Mobile Drawer Button -->
+            <button id="mobile-drawer-toggle" class="md:hidden flex flex-col justify-center items-end w-8 h-8 gap-1.5 focus:outline-none" aria-label="Toggle Menu">
+                <span class="w-6 h-[1px] bg-walnutWood transition-all duration-300"></span>
+                <span class="w-4 h-[1px] bg-walnutWood transition-all duration-300"></span>
+                <span class="w-5 h-[1px] bg-sageShadow transition-all duration-300"></span>
             </button>
         </div>
 
         <!-- Mobile Drawer Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-obsidian border-b border-titanium/55">
+        <div id="mobile-menu" class="hidden md:hidden bg-alabasterStone border-b border-fogGrey">
             <div class="flex flex-col px-6 py-8 gap-6">
-                <a href="#home" onclick="navigateTo('home'); toggleMobileDrawer()" class="font-sans text-sm tracking-[0.2em] uppercase text-white py-1">Home</a>
-                <a href="#menu" onclick="navigateTo('menu'); toggleMobileDrawer()" class="font-sans text-sm tracking-[0.2em] uppercase text-gray-400 py-1">Menu</a>
-                <a href="#reservations" onclick="navigateTo('reservations'); toggleMobileDrawer()" class="font-sans text-sm tracking-[0.2em] uppercase text-gray-400 py-1">Reservations</a>
-                <button onclick="navigateTo('reservations'); toggleMobileDrawer()" class="border border-electricCopper text-white text-center font-sans text-xs tracking-[0.2em] uppercase py-3 mt-2 w-full">
-                    Book Station
+                <a href="#home" onclick="navigateTo('home'); toggleMobileMenu()" class="font-sans text-sm tracking-[0.2em] uppercase text-walnutWood py-1">Home</a>
+                <a href="#menu" onclick="navigateTo('menu'); toggleMobileMenu()" class="font-sans text-sm tracking-[0.2em] uppercase text-sageShadow py-1">Menu</a>
+                <a href="#reservations" onclick="navigateTo('reservations'); toggleMobileMenu()" class="font-sans text-sm tracking-[0.2em] uppercase text-sageShadow py-1">Reservations</a>
+                <button onclick="navigateTo('reservations'); toggleMobileMenu()" class="border border-sageShadow text-walnutWood text-center font-sans text-xs tracking-[0.2em] uppercase py-3 mt-2 w-full">
+                    Secure Table
                 </button>
             </div>
         </div>
@@ -151,150 +146,152 @@
         <!-- PAGE 1: HOME -->
         <div id="page-home" class="page-view active-view">
             
-            <!-- Hero Banner -->
-            <section class="relative min-h-[85vh] flex items-center justify-center bg-cover bg-center bg-no-repeat" style="background-image: linear-gradient(to bottom, rgba(11, 12, 16, 0.55), rgba(11, 12, 16, 0.98)), url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1920&q=80');">
-                <div class="absolute inset-0 bg-gradient-to-r from-obsidian/90 via-transparent to-obsidian/90"></div>
-                <div class="max-w-5xl mx-auto px-6 text-center z-10 space-y-8">
-                    <span class="font-sans text-xs tracking-[0.4em] uppercase text-electricCopper block">Dynamic Culinary Architecture</span>
-                    <h1 class="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase text-white tracking-tight leading-none">
-                        High-Voltage Flavors.<br>
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-electricCopper via-[#FF6A00] to-white">Dark Luxury.</span>
+            <!-- Cinematic Bright Hero -->
+            <section class="relative min-h-[85vh] flex items-center justify-center bg-cover bg-center bg-no-repeat" style="background-image: linear-gradient(to bottom, rgba(245, 244, 240, 0.4), rgba(245, 244, 240, 0.95)), url('https://images.unsplash.com/photo-1543007630-9710e4a00a20?auto=format&fit=crop&w=1920&q=80');">
+                <div class="max-w-4xl mx-auto px-6 text-center z-10 space-y-8">
+                    <span class="font-sans text-xs tracking-[0.3em] uppercase text-sageShadow block">Crafted Botanical Heritage</span>
+                    <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-walnutWood font-light tracking-wide leading-[1.1]">
+                        Rooted in Nature.<br>
+                        <span class="italic font-normal">Refined by Hand.</span>
                     </h1>
-                    <p class="text-gray-400 text-sm sm:text-base md:text-lg max-w-xl mx-auto font-light leading-relaxed">
-                        Step into a high-octane dark room where aggressive molecular cooking techniques merge with absolute industrial elegance.
+                    <p class="text-walnutWood/80 text-sm sm:text-base md:text-lg max-w-xl mx-auto font-light leading-relaxed">
+                        Indulge in unhurried plate compositions featuring fresh botanical components, clean waters, and local grass pastures.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-                        <button onclick="navigateTo('menu')" class="w-full sm:w-auto bg-electricCopper text-obsidian hover:bg-transparent hover:text-white hover:border-white border border-transparent font-sans text-xs tracking-[0.25em] uppercase px-8 py-4 transition-all duration-300 font-bold">
-                            Review Menu
+                        <button onclick="navigateTo('menu')" class="w-full sm:w-auto bg-sageShadow text-white hover:bg-walnutWood hover:border-walnutWood border border-transparent font-sans text-xs tracking-[0.2em] uppercase px-8 py-4 transition-all duration-300">
+                            The Menu Collection
                         </button>
-                        <button onclick="navigateTo('reservations')" class="w-full sm:w-auto border border-titanium text-white hover:border-electricCopper font-sans text-xs tracking-[0.25em] uppercase px-8 py-4 transition-all duration-300">
-                            Book Table
+                        <button onclick="navigateTo('reservations')" class="w-full sm:w-auto border border-sageShadow text-walnutWood hover:border-walnutWood font-sans text-xs tracking-[0.2em] uppercase px-8 py-4 transition-all duration-300">
+                            Book Seating
                         </button>
                     </div>
                 </div>
             </section>
 
             <!-- Our Story Section -->
-            <section class="py-24 bg-obsidian border-b border-titanium/30">
+            <section class="py-24 bg-alabasterStone border-b border-fogGrey">
                 <div class="max-w-7xl mx-auto px-6">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
                         <div class="space-y-8">
-                            <span class="font-sans text-xs tracking-[0.3em] uppercase text-electricCopper block">Industrial Heritage</span>
-                            <h2 class="font-display text-3xl sm:text-5xl text-white font-extrabold uppercase leading-none">
-                                Obsidian Craftsmanship meets Culinary Anarchy.
+                            <span class="font-sans text-xs tracking-[0.25em] uppercase text-sageShadow block">Our Philosophical Roots</span>
+                            <h2 class="font-serif text-3xl sm:text-5xl text-walnutWood font-light leading-tight">
+                                Raw elements of soil, water, and timber, carefully aligned.
                             </h2>
-                            <p class="text-gray-400 text-sm sm:text-base leading-relaxed font-light">
-                                Carbon & Caviar strips away the soft, rustic sentiment of traditional dining, swapping exposed wooden elements for highly structured steel, dark brushed titanium, and deep carbon frameworks. We craft with a focus on intensity—pairing luxury elements like caviar and white truffle with intense wood smokes and extreme high-heat cooking.
+                            <p class="text-walnutWood/85 text-sm sm:text-base leading-relaxed font-light">
+                                Verdant & Stone was designed out of a respect for raw local botanical textures and minimalist Nordic dining disciplines. We turn away from cluttered culinary trends to instead honor organic farm harvests, crisp ocean catches, and unhurried kitchen processes.
                             </p>
-                            <p class="text-gray-400 text-sm sm:text-base leading-relaxed font-light">
-                                Our culinary system focuses heavily on contrast: cold liquid nitrogen toppings set against rich plates, and dense charcoal flavors balanced by bright fruit accents. This is a refined space designed for culinary explorers.
+                            <p class="text-walnutWood/85 text-sm sm:text-base leading-relaxed font-light">
+                                Each presentation is served on hand-thrown stoneware pottery, with every bite accented by fresh herb elements grown directly inside our integrated restaurant greenhouse.
                             </p>
-                            <div class="pt-2">
-                                <button onclick="navigateTo('menu')" class="group inline-flex items-center gap-4 text-white hover:text-electricCopper transition-colors duration-300">
-                                    <span class="font-sans text-xs tracking-[0.2em] uppercase">See the dynamic line-up</span>
-                                    <svg class="w-5 h-5 transform group-hover:translate-x-1.5 transition-transform duration-300 text-electricCopper" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="pt-4">
+                                <button onclick="navigateTo('menu')" class="group inline-flex items-center gap-4 text-walnutWood hover:text-sageShadow transition-colors duration-300">
+                                    <span class="font-sans text-xs tracking-[0.2em] uppercase">Explore our courses</span>
+                                    <svg class="w-5 h-5 transform group-hover:translate-x-1.5 transition-transform duration-300 text-sageShadow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                                     </svg>
                                 </button>
                             </div>
                         </div>
                         <div class="relative">
-                            <div class="absolute inset-0 border border-electricCopper/20 translate-x-4 translate-y-4"></div>
-                            <div class="relative overflow-hidden aspect-video bg-titanium">
-                                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1000&q=80" alt="Intense flame cooking close-up" class="w-full h-full object-cover brightness-75 contrast-125 hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 border border-sageShadow/30 translate-x-4 translate-y-4"></div>
+                            <div class="relative overflow-hidden aspect-[4/5] bg-[#EFECE6]">
+                                <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1000&q=80" alt="Fresh garden harvest presentation" class="w-full h-full object-cover grayscale-[5%] hover:scale-105 transition-transform duration-700">
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Info & Operational Coordinates Section -->
-            <section class="py-16 bg-[#13141c] border-b border-titanium/30">
+            <!-- Hours & Location Details Section -->
+            <section class="py-20 bg-[#EFECE6] border-b border-fogGrey">
                 <div class="max-w-7xl mx-auto px-6">
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
                         
-                        <!-- Col 1: Base Coordinates -->
+                        <!-- Col 1: Location Address -->
                         <div class="space-y-3">
-                            <h3 class="font-sans text-xs tracking-[0.25em] uppercase text-electricCopper">Base Coordinates</h3>
-                            <p class="font-display text-xl text-white font-bold uppercase">Zone 7, Industrial Loop</p>
-                            <p class="text-xs text-gray-400 font-light">808 Titanium Plaza, Seattle, WA 98101</p>
-                            <a href="#" class="inline-block pt-2 text-[10px] tracking-[0.2em] uppercase text-white hover:text-electricCopper transition-colors duration-200 underline underline-offset-4 decoration-electricCopper/40">Launch Map Directions</a>
+                            <h3 class="font-sans text-xs tracking-[0.2em] uppercase text-sageShadow font-bold">The Grove Grounds</h3>
+                            <p class="font-serif text-xl text-walnutWood font-light">104 Alabaster Boulevard</p>
+                            <p class="text-xs text-walnutWood/70 font-light">North Hills District, CA 90210</p>
+                            <a href="#" class="inline-block pt-2 text-[10px] tracking-[0.15em] uppercase text-walnutWood hover:text-sageShadow transition-colors duration-200 underline underline-offset-4 decoration-sageShadow">Get Ground Coordinates</a>
                         </div>
 
-                        <!-- Col 2: High-Power Hours -->
+                        <!-- Col 2: Service Hours -->
                         <div class="space-y-3">
-                            <h3 class="font-sans text-xs tracking-[0.25em] uppercase text-electricCopper">Operational Hours</h3>
-                            <div class="text-white space-y-1">
-                                <p class="font-display text-lg font-bold uppercase">Tuesday — Saturday</p>
-                                <p class="text-xs font-light text-gray-400">Main Service: 6:00 PM – 2:00 AM</p>
+                            <h3 class="font-sans text-xs tracking-[0.2em] uppercase text-sageShadow font-bold">Dining Service</h3>
+                            <div class="text-walnutWood space-y-1">
+                                <p class="font-serif text-lg font-light">Tuesday — Sunday</p>
+                                <p class="text-xs font-light text-walnutWood/70">Lunch & Evening Seatings: 12:00 PM – 10:00 PM</p>
                             </div>
-                            <p class="text-[10px] text-gray-500 font-light">Dark Lounge Hours: Until late close</p>
+                            <p class="text-[10px] text-walnutWood/60 font-light">Closed Mondays for greenhouse maintenance</p>
                         </div>
 
-                        <!-- Col 3: Direct Access lines -->
+                        <!-- Col 3: Communication Lines -->
                         <div class="space-y-3">
-                            <h3 class="font-sans text-xs tracking-[0.25em] uppercase text-electricCopper">Direct Access Lines</h3>
-                            <p class="font-display text-xl text-white font-bold uppercase">comms@carboncaviar.com</p>
-                            <p class="text-xs text-gray-400 font-light">+1 (206) 555-0980</p>
-                            <p class="text-[10px] text-gray-500 font-light">Secure dynamic events booking available</p>
+                            <h3 class="font-sans text-xs tracking-[0.2em] uppercase text-sageShadow font-bold">Direct Channels</h3>
+                            <p class="font-serif text-xl text-walnutWood font-light">enquiries@verdantstone.com</p>
+                            <p class="text-xs text-walnutWood/70 font-light">+1 (310) 555-0144</p>
+                            <p class="text-[10px] text-walnutWood/60 font-light">Enquire for intimate botanical arrangements</p>
                         </div>
 
                     </div>
                 </div>
             </section>
 
-            <!-- Dynamic Review Slider Section -->
-            <section class="py-24 bg-obsidian overflow-hidden relative">
+            <!-- Soft Google-style Testimonials Slider Carousel -->
+            <section class="py-24 bg-alabasterStone overflow-hidden relative">
                 <div class="max-w-5xl mx-auto px-6">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
-                        <div class="space-y-4">
-                            <span class="font-sans text-xs tracking-[0.3em] uppercase text-electricCopper block">Patron Evaluations</span>
-                            <h2 class="font-display text-3xl md:text-4xl text-white font-extrabold uppercase">The Intel Reports</h2>
-                        </div>
-                        <div class="flex gap-2">
-                            <button id="prev-slide" class="w-12 h-12 border border-titanium flex items-center justify-center text-white hover:border-electricCopper hover:text-electricCopper transition-colors duration-300" aria-label="Previous review">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7"></path>
-                                </svg>
-                            </button>
-                            <button id="next-slide" class="w-12 h-12 border border-titanium flex items-center justify-center text-white hover:border-electricCopper hover:text-electricCopper transition-colors duration-300" aria-label="Next review">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
-                                </svg>
-                            </button>
-                        </div>
+                    <div class="text-center mb-16 space-y-4">
+                        <span class="font-sans text-xs tracking-[0.25em] uppercase text-sageShadow block">Verified Patron Sentiments</span>
+                        <h2 class="font-serif text-3xl md:text-4xl text-walnutWood font-light">Our Community Journal</h2>
                     </div>
 
-                    <!-- Slider Viewport -->
-                    <div class="overflow-hidden">
-                        <div id="slider-track" class="flex transition-transform duration-500 ease-out gap-6" style="transform: translateX(0px);">
-                            
-                            <!-- Slide 1 -->
-                            <div class="min-w-full md:min-w-[calc(50%-12px)] bg-[#13141c] border border-titanium/30 p-8 flex flex-col justify-between h-80 copper-glow">
-                                <div class="space-y-4">
-                                    <div class="flex gap-1 text-electricCopper text-sm">
-                                        <span>⚡</span><span>⚡</span><span>⚡</span><span>⚡</span><span>⚡</span>
-                                    </div>
-                                    <p class="text-white text-sm sm:text-base font-light leading-relaxed">
-                                        "The Obsidian Pork Belly is intense. Strong dark glaze, perfectly balanced by rich parsnip cream. It delivers a bold contrast of texture and flavor."
-                                    </p>
-                                </div>
-                                <div class="flex justify-between items-center pt-6 border-t border-titanium/40">
-                                    <span class="font-display text-xs font-bold uppercase tracking-wider text-white">Vesper Thorne</span>
-                                    <span class="text-[10px] text-gray-500 tracking-widest uppercase font-mono">Google-Intel</span>
-                                </div>
-                            </div>
+                    <!-- Slider Viewport and Track -->
+                    <div class="relative">
+                        <!-- Navigation Arrows -->
+                        <div class="absolute -top-12 right-0 flex gap-2">
+                            <button id="prev-slide" class="w-10 h-10 rounded-full border border-sageShadow/30 flex items-center justify-center text-walnutWood hover:border-walnutWood transition-colors duration-300" aria-label="Previous sentiment">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7"></path></svg>
+                            </button>
+                            <button id="next-slide" class="w-10 h-10 rounded-full border border-sageShadow/30 flex items-center justify-center text-walnutWood hover:border-walnutWood transition-colors duration-300" aria-label="Next sentiment">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path></svg>
+                            </button>
+                        </div>
 
-                            <!-- Slide 2 -->
-                            <div class="min-w-full md:min-w-[calc(50%-12px)] bg-[#13141c] border border-titanium/30 p-8 flex flex-col justify-between h-80 copper-glow">
-                                <div class="space-y-4">
-                                    <div class="flex gap-1 text-electricCopper text-sm">
-                                        <span>⚡</span><span>⚡</span><span>⚡</span><span>⚡</span><span>⚡</span>
+                        <!-- Track Carousel -->
+                        <div class="overflow-hidden mt-6">
+                            <div id="slider-track" class="flex transition-transform duration-500 ease-out gap-6" style="transform: translateX(0px);">
+                                
+                                <!-- Slide 1 -->
+                                <div class="min-w-full md:min-w-[calc(50%-12px)] bg-[#EFECE6] border border-fogGrey p-8 flex flex-col justify-between h-72">
+                                    <div class="space-y-4">
+                                        <div class="flex gap-1 text-sageShadow">
+                                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                        </div>
+                                        <p class="text-walnutWood font-serif italic text-base sm:text-lg font-light leading-relaxed">
+                                            "The Arctic Charr was remarkably delicate. The cucumber-dill emulsion felt extraordinarily fresh, like a crisp Nordic spring morning."
+                                        </p>
                                     </div>
-                                    <p class="text-white text-sm sm:text-base font-light leading-relaxed">
-                                        "A stunning venue. It feels premium and high-end but completely avoids tired, rustic designs. The liquid nitrogen oysters are unforgettable."
-                                    </p>
+                                    <div class="flex justify-between items-center pt-4 border-t border-fogGrey">
+                                        <span class="font-sans text-xs font-medium tracking-wide text-walnutWood">Dr. Clara Thorne</span>
+                                        <span class="text-[10px] text-sageShadow tracking-widest uppercase">Verified Patron</span>
+                                    </div>
                                 </div>
-                                <div class="flex justify-between items-center pt-6 border-t border-titanium/40">
-                                    <span class="font-display text-xs font-bold uppercase tracking-wider text-white">Julian Blackwood</span>
-                                    <span class="text-[10px] text-gray-500 tracking-widest uppercase font-mono">Google-Intel</
+
+                                <!-- Slide 2 -->
+                                <div class="min-w-full md:min-w-[calc(50%-12px)] bg-[#EFECE6] border border-fogGrey p-8 flex flex-col justify-between h-72">
+                                    <div class="space-y-4">
+                                        <div class="flex gap-1 text-sageShadow">
+                                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                        </div>
+                                        <p class="text-walnutWood font-serif italic text-base sm:text-lg font-light leading-relaxed">
+                                            "A beautifully bright space. No dark corners—just lovely natural lighting and simple linen tables. The vegetable courses are outstanding."
+                                        </p>
+                                    </div>
+                                    <div class="flex justify-between items-center pt-4 border-t border-fogGrey">
+                                        <span class="font-sans text-xs font-medium tracking-wide text-walnutWood">Marcus Vane</span>
+                                        <span class="text-[10px] text-sageShadow tracking-widest uppercase">Verified Patron</span>
+                                    </div>
+                                </div>
+
+                                <!-- Slide 3 -->
+                                <div
