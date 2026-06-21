@@ -1,295 +1,296 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aura & Wave | Modern Coastal Culinary Studio</title>
-    <!-- Tailwind CSS -->
+    <title>Miso & Moss — Minimalist Fusion Restaurant</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Playfair Display & Montserrat for crisp premium styling -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <!-- FontAwesome for beautiful architectural icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Custom Style Config & CSS Variables -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        alabaster: '#F9F9F6',
-                        sand: '#EADCC9',
-                        terracotta: '#C86B45',
-                        aegean: '#1B365D',
+                        matteBlack: '#0F0F10',
+                        concreteGrey: '#D1D1CB',
+                        bambooBeige: '#F3EFE0',
+                        sageGreen: '#7A8B7B',
                     },
                     fontFamily: {
-                        serif: ['"Playfair Display"', 'serif'],
-                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
     <style>
-        /* Modern high-end UI Transitions */
-        .view-transition {
-            transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        body {
+            background-color: #0F0F10;
+            color: #F3EFE0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
         }
-        .view-hidden {
+        /* Custom smooth transition states for SPA simulation */
+        .page-view {
+            transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1), transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .page-view.hidden-view {
             opacity: 0;
             transform: translateY(12px);
             pointer-events: none;
             position: absolute;
             width: 100%;
+            height: 0;
+            overflow: hidden;
         }
-        .view-visible {
+        .page-view.active-view {
             opacity: 1;
             transform: translateY(0);
-            pointer-events: auto;
             position: relative;
+            height: auto;
+            pointer-events: auto;
         }
-        /* Card Hover Micro-Interactions */
-        .menu-card-zoom img {
-            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        /* Hide default scrollbars while keeping functionality */
+        ::-webkit-scrollbar {
+            width: 6px;
         }
-        .menu-card-zoom:hover img {
-            transform: scale(1.04);
+        ::-webkit-scrollbar-track {
+            background: #0F0F10;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #7A8B7B;
+            border-radius: 3px;
         }
     </style>
 </head>
-<body class="bg-[#F9F9F6] text-[#1B365D] font-sans antialiased min-h-screen flex flex-col selection:bg-[#EADCC9] selection:text-[#1B365D]">
+<body class="flex flex-col min-h-screen">
 
-    <!-- Dynamic Premium Header / Navigation -->
-    <header class="sticky top-0 z-50 bg-[#F9F9F6]/95 backdrop-blur-md border-b border-[#EADCC9] transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-24">
-                
-                <!-- Brand Identity -->
-                <div class="flex items-center gap-3 cursor-pointer" onclick="navigateTo('home')">
-                    <div class="relative w-12 h-12 border border-[#C86B45] rounded-full flex items-center justify-center">
-                        <div class="absolute inset-1 border border-[#1B365D]/20 rounded-full animate-spin-slow"></div>
-                        <span class="font-serif text-sm font-semibold tracking-wider text-[#C86B45]">A&W</span>
-                    </div>
-                    <div>
-                        <span class="font-serif text-2xl tracking-widest block font-medium text-[#1B365D]">AURA & WAVE</span>
-                        <span class="text-[9px] tracking-[0.3em] block uppercase text-[#C86B45] font-semibold">Modern Coastal Kitchen</span>
-                    </div>
+    <!-- Top Announcement Bar -->
+    <div class="bg-[#18181a] text-bambooBeige text-[11px] tracking-[0.15em] uppercase py-2.5 px-4 text-center border-b border-white/5 font-sans font-light">
+        Experiencing autumn's quiet harmony • Curated dining reservations now available
+    </div>
+
+    <!-- Main Elegant Sticky Navigation -->
+    <header class="sticky top-0 z-50 bg-[#0F0F10]/95 backdrop-blur-md border-b border-bambooBeige/10 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            
+            <!-- Logo Brand -->
+            <a href="#home" onclick="navigateTo('home')" class="flex items-center gap-3 group">
+                <div class="w-8 h-8 rounded-full border border-sageGreen flex items-center justify-center transition-transform duration-500 group-hover:rotate-180">
+                    <div class="w-2 h-2 bg-sageGreen rounded-full"></div>
                 </div>
-
-                <!-- Navigation Links (Desktop) -->
-                <nav class="hidden md:flex items-center space-x-10 text-xs font-semibold tracking-widest text-[#1B365D]/85">
-                    <button onclick="navigateTo('home')" id="nav-home" class="hover:text-[#C86B45] transition-colors duration-200 uppercase pb-1 border-b-2 border-transparent transition-all">Home</button>
-                    <button onclick="navigateTo('menu')" id="nav-menu" class="hover:text-[#C86B45] transition-colors duration-200 uppercase pb-1 border-b-2 border-transparent transition-all">The Menu</button>
-                    <button onclick="navigateTo('reservations')" id="nav-reservations" class="hover:text-[#C86B45] transition-colors duration-200 uppercase pb-1 border-b-2 border-transparent transition-all">Reservations</button>
-                    <button onclick="navigateTo('reservations')" class="bg-[#1B365D] hover:bg-[#C86B45] text-white px-6 py-3 tracking-widest uppercase text-[10px] transition-all duration-300 shadow-sm">
-                        Find a Table
-                    </button>
-                </nav>
-
-                <!-- Mobile Navigation Trigger -->
-                <div class="md:hidden">
-                    <button id="mobile-hamburger" type="button" class="text-[#1B365D] focus:outline-none" aria-label="Toggle menu">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
+                <div class="flex flex-col">
+                    <span class="font-serif text-xl tracking-[0.18em] uppercase text-bambooBeige font-light leading-none">Miso & Moss</span>
+                    <span class="text-[9px] tracking-[0.3em] uppercase text-concreteGrey mt-1">Minimalist Fusion</span>
                 </div>
+            </a>
+
+            <!-- Desktop Nav Items -->
+            <nav class="hidden md:flex items-center gap-10">
+                <a href="#home" onclick="navigateTo('home')" id="nav-home" class="nav-link font-sans text-xs tracking-[0.2em] uppercase text-bambooBeige hover:text-sageGreen transition-colors duration-300 py-2 relative">
+                    Home
+                    <span class="absolute bottom-0 left-0 w-0 h-[1px] bg-sageGreen transition-all duration-300"></span>
+                </a>
+                <a href="#menu" onclick="navigateTo('menu')" id="nav-menu" class="nav-link font-sans text-xs tracking-[0.2em] uppercase text-concreteGrey hover:text-bambooBeige transition-colors duration-300 py-2 relative">
+                    Menu
+                    <span class="absolute bottom-0 left-0 w-0 h-[1px] bg-sageGreen transition-all duration-300"></span>
+                </a>
+                <a href="#reservations" onclick="navigateTo('reservations')" id="nav-reservations" class="nav-link font-sans text-xs tracking-[0.2em] uppercase text-concreteGrey hover:text-bambooBeige transition-colors duration-300 py-2 relative">
+                    Reservations
+                    <span class="absolute bottom-0 left-0 w-0 h-[1px] bg-sageGreen transition-all duration-300"></span>
+                </a>
+            </nav>
+
+            <!-- Reservation CTA -->
+            <div class="hidden md:block">
+                <button onclick="navigateTo('reservations')" class="border border-sageGreen text-bambooBeige bg-transparent hover:bg-sageGreen hover:text-matteBlack transition-all duration-300 font-sans text-xs tracking-[0.18em] uppercase px-5 py-2.5">
+                    Reserve
+                </button>
             </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-btn" class="md:hidden flex flex-col justify-center items-end w-8 h-8 gap-1.5 focus:outline-none" aria-label="Toggle Menu">
+                <span class="w-6 h-[1px] bg-bambooBeige transition-all duration-300"></span>
+                <span class="w-4 h-[1px] bg-bambooBeige transition-all duration-300"></span>
+                <span class="w-5 h-[1px] bg-bambooBeige transition-all duration-300"></span>
+            </button>
         </div>
 
-        <!-- Mobile Expandable Panel -->
-        <div id="mobile-menu" class="hidden md:hidden bg-[#F9F9F6] border-t border-[#EADCC9] py-4 transition-all duration-300">
-            <div class="px-4 space-y-3 text-center text-xs font-semibold tracking-wider">
-                <button onclick="navigateTo('home'); toggleMobile();" class="block w-full py-2 hover:text-[#C86B45]">HOME</button>
-                <button onclick="navigateTo('menu'); toggleMobile();" class="block w-full py-2 hover:text-[#C86B45]">THE MENU</button>
-                <button onclick="navigateTo('reservations'); toggleMobile();" class="block w-full py-2 hover:text-[#C86B45]">RESERVATIONS</button>
-                <button onclick="navigateTo('reservations'); toggleMobile();" class="block w-full bg-[#1B365D] text-white py-3 tracking-widest text-[10px] uppercase">
-                    FIND A TABLE
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#131315] border-b border-bambooBeige/10">
+            <div class="flex flex-col px-6 py-8 gap-6">
+                <a href="#home" onclick="navigateTo('home'); toggleMobileMenu()" class="font-sans text-sm tracking-[0.2em] uppercase text-bambooBeige py-1">Home</a>
+                <a href="#menu" onclick="navigateTo('menu'); toggleMobileMenu()" class="font-sans text-sm tracking-[0.2em] uppercase text-concreteGrey py-1">Menu</a>
+                <a href="#reservations" onclick="navigateTo('reservations'); toggleMobileMenu()" class="font-sans text-sm tracking-[0.2em] uppercase text-concreteGrey py-1">Reservations</a>
+                <button onclick="navigateTo('reservations'); toggleMobileMenu()" class="border border-sageGreen text-bambooBeige text-center font-sans text-xs tracking-[0.18em] uppercase py-3 mt-2 w-full">
+                    Book a Table
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- Main Content Dynamic Wrapper -->
-    <main class="flex-grow relative overflow-x-hidden">
-
-        <!-- ==============================================
-             PAGE 1: HOME VIEW
-             ============================================== -->
-        <div id="view-home" class="view-transition view-visible">
-            
-            <!-- Cinematic Sun-Drenched Hero -->
-            <section class="relative h-[85vh] flex items-center justify-center bg-cover bg-center" style="background-image: linear-gradient(rgba(249, 249, 246, 0.4), rgba(27, 54, 93, 0.65)), url('https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1920&q=80');">
-                <div class="relative z-10 text-center max-w-4xl px-4 mx-auto text-[#F9F9F6]">
-                    <span class="text-[#EADCC9] font-medium tracking-[0.4em] uppercase text-xs sm:text-sm block mb-4">AURA & WAVE • PACIFIC COAST COOPERATIVE</span>
-                    <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-tight mb-6">
-                        Sun-Drenched Flavors.<br>Coastal Serenity.
+    <main class="flex-grow">
+        
+        <!-- PAGE 1: HOME -->
+        <div id="page-home" class="page-view active-view">
+            <!-- Cinematic Hero -->
+            <section class="relative min-h-[90vh] flex items-center justify-center bg-cover bg-center bg-no-repeat" style="background-image: linear-gradient(to bottom, rgba(15, 15, 16, 0.45), rgba(15, 15, 16, 0.95)), url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1920&q=80');">
+                <div class="max-w-4xl mx-auto px-6 text-center z-10">
+                    <span class="font-sans text-[11px] tracking-[0.3em] uppercase text-sageGreen block mb-6 animate-pulse">A Quiet Convergence of Culinary Art</span>
+                    <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-bambooBeige font-light tracking-wide leading-[1.1] mb-8">
+                        Simplicity Defined.<br>
+                        <span class="italic">Precision Cultivated.</span>
                     </h1>
-                    <div class="w-16 h-[1px] bg-[#EADCC9] mx-auto my-6"></div>
-                    <p class="text-white/95 text-sm sm:text-lg max-w-xl mx-auto font-light leading-relaxed mb-8">
-                        Experience elevated seaside cooking where local organic harvests meet fresh oceanic catch, curated daily beneath the radiant coastal sun.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <button onclick="navigateTo('menu')" class="bg-[#C86B45] hover:bg-[#1B365D] text-white px-8 py-4 tracking-widest text-xs font-bold transition-all duration-300">
-                            EXPLORE THE CATCH
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
+                        <button onclick="navigateTo('menu')" class="w-full sm:w-auto bg-sageGreen text-matteBlack hover:bg-transparent hover:text-bambooBeige hover:border-bambooBeige border border-transparent font-sans text-xs tracking-[0.2em] uppercase px-8 py-4 transition-all duration-300">
+                            Explore the Menu
                         </button>
-                        <button onclick="navigateTo('reservations')" class="bg-white/10 hover:bg-white/20 border border-white/40 text-white px-8 py-4 tracking-widest text-xs font-bold transition-all duration-300">
-                            SECURE TABLE
+                        <button onclick="navigateTo('reservations')" class="w-full sm:w-auto border border-concreteGrey/55 text-bambooBeige hover:border-sageGreen font-sans text-xs tracking-[0.2em] uppercase px-8 py-4 transition-all duration-300">
+                            Book Table
                         </button>
                     </div>
                 </div>
-            </section>
-
-            <!-- Location & Hours CTA Strip -->
-            <section class="relative z-20 max-w-6xl mx-auto -mt-12 px-4 mb-20">
-                <div class="grid grid-cols-1 md:grid-cols-3 bg-[#F9F9F6] border border-[#EADCC9] shadow-xl text-[#1B365D]">
-                    <!-- Block 1: Location -->
-                    <div class="p-8 border-b md:border-b-0 md:border-r border-[#EADCC9] flex items-start gap-4">
-                        <div class="text-[#C86B45] text-xl mt-1">
-                            <i class="fa-solid fa-compass"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-serif text-base font-semibold tracking-wider mb-2">THE OCEANFRONT</h3>
-                            <p class="text-xs text-[#1B365D]/80 font-light leading-relaxed">
-                                920 Marina Boulevard<br>Santa Barbara, CA 93101
-                            </p>
-                            <a href="https://maps.google.com" target="_blank" class="inline-block mt-3 text-[10px] font-bold text-[#C86B45] hover:underline tracking-widest uppercase">Show Map <i class="fa-solid fa-chevron-right ml-1 text-[8px]"></i></a>
-                        </div>
-                    </div>
-                    <!-- Block 2: Hours -->
-                    <div class="p-8 border-b md:border-b-0 md:border-r border-[#EADCC9] flex items-start gap-4">
-                        <div class="text-[#C86B45] text-xl mt-1">
-                            <i class="fa-regular fa-sun"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-serif text-base font-semibold tracking-wider mb-2">DINING HOURS</h3>
-                            <div class="text-xs text-[#1B365D]/85 font-light space-y-1">
-                                <p class="flex justify-between gap-8"><span>Brunch (Sat & Sun):</span> <span class="font-medium">10 AM – 3 PM</span></p>
-                                <p class="flex justify-between gap-8"><span>Mid-Day Sun:</span> <span class="font-medium">3 PM – 5 PM</span></p>
-                                <p class="flex justify-between gap-8"><span>Sunset Dinner:</span> <span class="font-medium">5 PM – 10 PM</span></p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Block 3: Inquiry -->
-                    <div class="p-8 flex items-start gap-4">
-                        <div class="text-[#C86B45] text-xl mt-1">
-                            <i class="fa-solid fa-life-ring"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-serif text-base font-semibold tracking-wider mb-2">GET IN TOUCH</h3>
-                            <p class="text-xs text-[#1B365D]/85 font-light mb-1">Direct Concierge Intake Line:</p>
-                            <p class="text-base font-semibold text-[#1B365D] mb-1">(805) 555-0199</p>
-                            <p class="text-[10px] text-gray-500">concierge@aurawave.com</p>
-                        </div>
-                    </div>
+                <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center animate-bounce hidden sm:block">
+                    <span class="text-[9px] tracking-[0.2em] uppercase text-concreteGrey block mb-2">Scroll Down</span>
+                    <div class="w-[1px] h-8 bg-concreteGrey/35 mx-auto"></div>
                 </div>
             </section>
 
             <!-- Our Story Section -->
-            <section class="py-16 px-4 max-w-7xl mx-auto">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                    <div class="lg:col-span-5 space-y-5">
-                        <span class="text-[#C86B45] font-semibold tracking-widest text-xs uppercase block">THE PHILOSOPHY</span>
-                        <h2 class="font-serif text-3xl sm:text-5xl font-bold text-[#1B365D] tracking-tight leading-tight">
-                            Fresh sea breeze, organic soils, culinary craft.
-                        </h2>
-                        <div class="w-12 h-[2px] bg-[#C86B45] my-4"></div>
-                        <p class="text-gray-600 leading-relaxed font-light text-sm">
-                            Aura & Wave was founded to honor the exquisite dialogue between sun-warmed organic landscapes and the clean salty depths of the ocean. Each afternoon, we partner directly with independent deep-sea fishermen and coastal organic farmers to source dynamic, pure ingredients.
-                        </p>
-                        <p class="text-gray-600 leading-relaxed font-light text-sm">
-                            We preserve raw flavors using simple high-heat techniques—blistering on salt plates, smoking over aromatic olive woods, and pairing with house-pressed olive oils and hand-harvested citrus segments.
-                        </p>
-                        <div class="pt-2">
-                            <button onclick="navigateTo('menu')" class="group text-xs font-bold tracking-widest text-[#C86B45] hover:text-[#1B365D] transition-colors duration-200">
-                                VIEW THE FRESH CATCH <i class="fa-solid fa-arrow-right-long ml-2 group-hover:translate-x-2 transition-transform"></i>
+            <section class="py-24 md:py-32 bg-matteBlack border-b border-bambooBeige/5">
+                <div class="max-w-7xl mx-auto px-6">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+                        <div class="space-y-8">
+                            <span class="font-sans text-[11px] tracking-[0.25em] uppercase text-sageGreen block">Philosophy & Lineage</span>
+                            <h2 class="font-serif text-3xl sm:text-5xl text-bambooBeige font-light leading-tight">
+                                Where the quiet earth meets masterly culinary discipline.
+                            </h2>
+                            <p class="text-concreteGrey text-sm sm:text-base leading-relaxed font-light">
+                                Born from a quiet reverence for Japanese masterly precision and Nordic forestry alignment, Miso & Moss reconciles delicate oceanic gradients with earthen simplicity. Our kitchen discards chaotic culinary excess to celebrate raw ingredient clarity, quiet composition, and structured harmony.
+                            </p>
+                            <p class="text-concreteGrey text-sm sm:text-base leading-relaxed font-light">
+                                Each bite pays homage to the micro-seasons, emphasizing locally harvested elements framed by classic, unhurried fermentation practices.
+                            </p>
+                            <div class="pt-4">
+                                <button onclick="navigateTo('menu')" class="group inline-flex items-center gap-4 text-bambooBeige hover:text-sageGreen transition-colors duration-300">
+                                    <span class="font-sans text-xs tracking-[0.2em] uppercase">The culinary collection</span>
+                                    <svg class="w-5 h-5 transform group-hover:translate-x-1.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute inset-0 border border-sageGreen/30 translate-x-4 translate-y-4"></div>
+                            <div class="relative overflow-hidden aspect-[4/5] bg-neutral-900">
+                                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1000&q=80" alt="Minimalist culinary arrangement" class="w-full h-full object-cover grayscale-[15%] contrast-115 hover:scale-105 transition-transform duration-700">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA: Hours & Location -->
+            <section class="py-20 bg-[#121214] border-b border-bambooBeige/5">
+                <div class="max-w-7xl mx-auto px-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
+                        
+                        <!-- Col 1: Location -->
+                        <div class="space-y-3">
+                            <h3 class="font-sans text-[11px] tracking-[0.2em] uppercase text-sageGreen">Location</h3>
+                            <p class="font-serif text-xl text-bambooBeige font-light">429 Mosswood Grove Rd</p>
+                            <p class="text-sm text-concreteGrey font-light">North Portland District, OR 97203</p>
+                            <a href="#" class="inline-block pt-2 text-[11px] tracking-[0.15em] uppercase text-bambooBeige hover:text-sageGreen transition-colors duration-200 underline underline-offset-4 decoration-sageGreen/55">Get Directions</a>
+                        </div>
+
+                        <!-- Col 2: Hours -->
+                        <div class="space-y-3">
+                            <h3 class="font-sans text-[11px] tracking-[0.2em] uppercase text-sageGreen">Dining Hours</h3>
+                            <div class="text-bambooBeige space-y-1">
+                                <p class="font-serif text-lg font-light">Wednes — Sunday</p>
+                                <p class="text-sm font-light text-concreteGrey">Dinner Service: 5:00 PM – 10:30 PM</p>
+                            </div>
+                            <p class="text-[11px] text-concreteGrey font-light">Closed Mondays & Tuesdays</p>
+                        </div>
+
+                        <!-- Col 3: Contacts -->
+                        <div class="space-y-3">
+                            <h3 class="font-sans text-[11px] tracking-[0.2em] uppercase text-sageGreen">Contact</h3>
+                            <p class="font-serif text-xl text-bambooBeige font-light">hello@misomoss.com</p>
+                            <p class="text-sm text-concreteGrey font-light">+1 (503) 555-0193</p>
+                            <p class="text-[11px] text-concreteGrey font-light">Inquiries for private services and events</p>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Google-Style Review Slider Carousel -->
+            <section class="py-24 bg-matteBlack overflow-hidden relative">
+                <div class="max-w-5xl mx-auto px-6">
+                    <div class="text-center mb-16 space-y-4">
+                        <span class="font-sans text-[11px] tracking-[0.25em] uppercase text-sageGreen block">Patron Testimonials</span>
+                        <h2 class="font-serif text-3xl md:text-4xl text-bambooBeige font-light">Our Commended Experience</h2>
+                    </div>
+
+                    <!-- Slider Container -->
+                    <div class="relative">
+                        <!-- Navigation Arrows -->
+                        <div class="absolute -top-12 right-0 flex gap-2">
+                            <button id="prev-slide" class="w-10 h-10 rounded-full border border-bambooBeige/10 flex items-center justify-center text-bambooBeige hover:border-sageGreen transition-colors duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7"></path></svg>
+                            </button>
+                            <button id="next-slide" class="w-10 h-10 rounded-full border border-bambooBeige/10 flex items-center justify-center text-bambooBeige hover:border-sageGreen transition-colors duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path></svg>
                             </button>
                         </div>
-                    </div>
-                    
-                    <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <div class="space-y-6">
-                            <div class="overflow-hidden border border-[#EADCC9] bg-white p-3 shadow-md">
-                                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&h=700&q=80" alt="Beautiful bright coastal crudo salad with natural lighting" class="w-full object-cover h-80 hover:scale-102 transition-transform duration-500">
-                            </div>
-                            <div class="bg-[#1B365D] p-8 text-[#F9F9F6]">
-                                <h4 class="font-serif text-2xl font-bold mb-2 text-[#EADCC9]">100%</h4>
-                                <p class="text-[10px] uppercase tracking-widest text-[#F9F9F6]/85">Traceable Sustainable Sourcing</p>
-                            </div>
-                        </div>
-                        <div class="space-y-6 sm:pt-12">
-                            <div class="bg-[#EADCC9] p-8 text-[#1B365D]">
-                                <h4 class="font-serif text-2xl font-bold mb-2 text-[#C86B45]">Hand-Pressed</h4>
-                                <p class="text-[10px] uppercase tracking-widest text-[#1B365D]/90">Cold-Pressed Extra Virgin Olive Oils</p>
-                            </div>
-                            <div class="overflow-hidden border border-[#EADCC9] bg-white p-3 shadow-md">
-                                <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&h=700&q=80" alt="Mediterranean crisp salad and harvest ingredients" class="w-full object-cover h-80 hover:scale-102 transition-transform duration-500">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
-            <!-- Elegant Review Carousel (Google Rating Vibe) -->
-            <section class="bg-[#EADCC9]/35 py-24 px-4 border-t border-b border-[#EADCC9] relative overflow-hidden">
-                <div class="max-w-4xl mx-auto text-center relative z-10">
-                    <span class="text-[#C86B45] font-semibold tracking-widest text-xs uppercase block mb-3">PATRON PERSPECTIVES</span>
-                    <h2 class="font-serif text-3xl sm:text-4xl font-bold mb-10 tracking-wide text-[#1B365D]">GUEST VOICES</h2>
+                        <!-- Slides -->
+                        <div class="overflow-hidden mt-6">
+                            <div id="slider-track" class="flex transition-transform duration-500 ease-out gap-6" style="transform: translateX(0px);">
+                                
+                                <!-- Slide 1 -->
+                                <div class="min-w-full md:min-w-[calc(50%-12px)] bg-[#121214] border border-white/5 p-8 flex flex-col justify-between h-72">
+                                    <div class="space-y-4">
+                                        <!-- Stars -->
+                                        <div class="flex gap-1 text-sageGreen">
+                                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                        </div>
+                                        <p class="text-bambooBeige font-serif italic text-base sm:text-lg font-light leading-relaxed">
+                                            "An incredible exercise in restraint. The Miso Black Cod is transcendent—delicately glazed, perfectly rich, and clean."
+                                        </p>
+                                    </div>
+                                    <div class="flex justify-between items-center pt-4 border-t border-white/5">
+                                        <span class="font-sans text-xs tracking-wider text-bambooBeige">Eleanor Vance</span>
+                                        <span class="text-[10px] text-concreteGrey tracking-widest uppercase">Google Verified</span>
+                                    </div>
+                                </div>
 
-                    <!-- Review Container -->
-                    <div class="min-h-[200px] flex items-center justify-center">
-                        <div id="review-display" class="transition-opacity duration-300 ease-in-out opacity-100">
-                            <!-- Dynamic Review Content -->
-                            <div class="flex justify-center mb-4 text-[#C86B45] text-sm">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </div>
-                            <p class="font-serif text-xl sm:text-2xl italic leading-relaxed text-[#1B365D] mb-6 max-w-3xl mx-auto">
-                                "The Octopus a la Plancha was extraordinarily tender. Watching the sunset with the saffron purée and a cold glass of Assyrtiko was unforgettable."
-                            </p>
-                            <h4 class="text-xs uppercase tracking-[0.25em] font-bold text-[#C86B45]">— SOPHIE CHEN, verified diner</h4>
-                        </div>
-                    </div>
+                                <!-- Slide 2 -->
+                                <div class="min-w-full md:min-w-[calc(50%-12px)] bg-[#121214] border border-white/5 p-8 flex flex-col justify-between h-72">
+                                    <div class="space-y-4">
+                                        <div class="flex gap-1 text-sageGreen">
+                                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                        </div>
+                                        <p class="text-bambooBeige font-serif italic text-base sm:text-lg font-light leading-relaxed">
+                                            "The design mirrors the plates. Simple, raw concrete floors, clean lines, and food that respects tradition without being bound by it."
+                                        </p>
+                                    </div>
+                                    <div class="flex justify-between items-center pt-4 border-t border-white/5">
+                                        <span class="font-sans text-xs tracking-wider text-bambooBeige">Alistair Finch</span>
+                                        <span class="text-[10px] text-concreteGrey tracking-widest uppercase">Google Verified</span>
+                                    </div>
+                                </div>
 
-                    <!-- Slide Navigation -->
-                    <div class="flex justify-center items-center gap-6 mt-8">
-                        <button onclick="prevReview()" class="w-12 h-12 border border-[#1B365D]/20 rounded-full flex items-center justify-center text-[#1B365D] hover:border-[#C86B45] hover:text-[#C86B45] transition-all">
-                            <i class="fa-solid fa-chevron-left text-sm"></i>
-                        </button>
-                        <button onclick="nextReview()" class="w-12 h-12 border border-[#1B365D]/20 rounded-full flex items-center justify-center text-[#1B365D] hover:border-[#C86B45] hover:text-[#C86B45] transition-all">
-                            <i class="fa-solid fa-chevron-right text-sm"></i>
-                        </button>
-                    </div>
-                </div>
-            </section>
-
-        </div>
-
-        <!-- ==============================================
-             PAGE 2: MENU VIEW
-             ============================================== -->
-        <div id="view-menu" class="view-transition view-hidden">
-            
-            <!-- Menu Top banner -->
-            <section class="relative h-[35vh] flex items-center justify-center bg-cover bg-center" style="background-image: linear-gradient(rgba(249, 249, 246, 0.45), rgba(27, 54, 93, 0.65)), url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1920&q=80');">
-                <div class="relative z-10 text-center px-4">
-                    <span class="text-[#EADCC9] font-semibold tracking-widest text-xs uppercase block mb-3">CRISP & PURE SANCTUARY</span>
-                    <h1 class="font-serif text-4xl sm:text-6xl font-bold text-white tracking-tight">The Culinary Manifesto</h1>
-                    <div class="w-12 h-[2px] bg-[#EADCC9] mx-auto mt-4"></div>
-                </div>
-            </section>
-
-            <!-- Interactive Category Filter Tabs -->
-            <section class="py-8 bg-white border-y border-[#EADCC9] sticky top-24 z-40 shadow-sm">
-                <div class="max-w-7xl mx-auto px-4">
-                    <div class="flex flex-wrap justify-center gap-2 sm:gap-4">
-                        <button onclick="filterMenu('all')" id="tab-all" class="menu-tab px-6 py-3 text-[10px] font-bold tracking-widest uppercase border border-[#C86B45] bg-[#C86B45] text-white transition-all">
-                            All Plates
-                        </button>
-                        <button onclick="filterMenu('appetizers')" id="tab-appetizers" class="menu-tab px-6 py-3 text-[10px] font-bold tracking-widest uppercase border border-[#EADCC9] hover:border-[#C86B45] text-[#1B365D]/80 hover:text-[#C86B45] transition-all">
-                            Appetizers
-               
+                                <!-- Slide 3 -->
+                                <div class="min-w-full md:min-w-[calc(50%-12px)] bg-[#121214] border border-white/5 p-8 flex flex-col justify-between h-72">
+                                    <div class="space-y-4">
+                                        <div class="flex gap-1 text-sageGreen">
+                                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                        </div>
+                                        <p class="text-bambooBeige font-serif italic text-base sm:tex
